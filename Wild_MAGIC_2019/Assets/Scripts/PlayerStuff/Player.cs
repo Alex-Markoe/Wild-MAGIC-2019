@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     [Space(15)]
     public GameObject swordObject;
-    public GameObject createdSword;
+    private GameObject createdSword;
 
     [Space(15)]
     [Header("PlayerUI")]
@@ -40,9 +40,14 @@ public class Player : MonoBehaviour
         else
             GameObject.Destroy(createdSword);
 
-        if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
+        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
+        }
+
+        if(hp <= 0)
+        {
+            //Die();
         }
     }
 
@@ -129,9 +134,9 @@ public class Player : MonoBehaviour
         return transform.position;
     }
 
-    public void DamageEnemy()
+    void Die()
     {
-
+        GameObject.Destroy(this.gameObject);
     }
 
     public void OnGUI()
