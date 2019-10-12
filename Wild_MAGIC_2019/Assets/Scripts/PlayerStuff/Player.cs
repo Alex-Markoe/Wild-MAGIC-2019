@@ -11,12 +11,16 @@ public class Player : MonoBehaviour
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
 
-    [Space(5)]
+    [Space(15)]
     [Header("Player's Scripts")]
     public PlayerMovement pMove;
 
-    [Space(5)]
+    [Space(15)]
     public GameObject swordObject;
+
+    [Space(15)]
+    [Header("PlayerUI")]
+    public Sprite heart;
 
     private float swordTimer;
 
@@ -52,7 +56,8 @@ public class Player : MonoBehaviour
         // So we need to rotate the sword to be in that direction
         swordObject.transform.right = -direction.normalized;
 
-        if(direction.x > 0)
+        #region Sword Directions
+        if (direction.x > 0)
         {
             x = -1;
             y = 0;
@@ -93,6 +98,7 @@ public class Player : MonoBehaviour
             x = -1;
             y = 1;
         }
+        #endregion
 
         swordObject.transform.right = new Vector3(x, y, 0);
         swordObject.SetActive(true);
@@ -106,5 +112,30 @@ public class Player : MonoBehaviour
     public Vector3 GetPosition()
     {
         return transform.position;
+    }
+
+    public void DamageEnemy()
+    {
+
+    }
+
+    public void OnGUI()
+    {
+        GUILayout.BeginArea(new Rect(30, 30, Screen.width, Screen.height));
+        GUILayout.BeginHorizontal();
+        GUILayout.BeginVertical();
+
+        GUILayout.BeginHorizontal();
+        for (int i = 0; i < hp; i++)
+        {
+            GUILayout.Label(heart.texture);
+        }
+        GUILayout.EndHorizontal();
+
+        GUILayout.FlexibleSpace();
+        GUILayout.EndVertical();
+        GUILayout.FlexibleSpace();
+        GUILayout.EndHorizontal();
+        GUILayout.EndArea();
     }
 }
