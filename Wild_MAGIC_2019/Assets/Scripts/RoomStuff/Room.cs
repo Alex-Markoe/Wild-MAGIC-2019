@@ -22,6 +22,7 @@ public class Room : MonoBehaviour
         foreach(GameObject enemy in enemies)
         {
             if (enemy != null)
+            { }
                 enemy.SetActive(true);
         }
 
