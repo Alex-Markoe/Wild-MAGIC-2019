@@ -30,7 +30,7 @@ public class EnemyMovementHard : EnemyMovement
             if (toCollide == player)
             {
                 //  animate attack
-                player.TakeDamage(2);
+                player.TakeDamage(1);
             }
             attackTimer = 0;
     }

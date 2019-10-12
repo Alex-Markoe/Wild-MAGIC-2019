@@ -30,12 +30,12 @@ public class Bullet : MonoBehaviour
     }
 
     //   deletes on collision
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != enemy && collision.gameObject != enemyHard && collision.gameObject != enemyShooter)
+        if (collision.gameObject.tag != "Enemy")
         {
-            Destroy(this);
-            player.GetComponent<Player>().TakeDamage(2);
+            Destroy(gameObject);
+            player.GetComponent<Player>().TakeDamage(1);
         }
     }
 }
