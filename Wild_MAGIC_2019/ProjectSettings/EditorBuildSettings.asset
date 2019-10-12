@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 5d6807cea259cdc45b7260054b600b2b
+  - enabled: 1
+    path: Assets/Scenes/TarotCardSelector.unity
+    guid: e732a576ad35f844f88e0de49e9d9bde
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 76393cacc2d9abe489fab13c87102329
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 3ee25a9b9dd10cf4e81b09722a5ae57c
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
