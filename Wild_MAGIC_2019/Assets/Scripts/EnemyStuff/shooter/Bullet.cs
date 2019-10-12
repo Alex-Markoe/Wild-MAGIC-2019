@@ -32,10 +32,12 @@ public class Bullet : MonoBehaviour
     //   deletes on collision
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Wall")
+        if (collision.gameObject.tag != "Enemy")
         {
+            if (collision.gameObject.tag == "Player")
+                player.GetComponent<Player>().TakeDamage(1);
+
             Destroy(gameObject);
-            player.GetComponent<Player>().TakeDamage(1);
         }
     }
 }

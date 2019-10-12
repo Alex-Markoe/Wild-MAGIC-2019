@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8614871918194350076}
   - component: {fileID: 8614871918194350067}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8614871918344098514}
   - component: {fileID: 8614871918344098515}
   - component: {fileID: 9193019742291316313}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}

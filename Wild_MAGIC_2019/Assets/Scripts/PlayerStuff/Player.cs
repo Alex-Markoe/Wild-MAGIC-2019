@@ -112,14 +112,19 @@ public class Player : MonoBehaviour
 
         createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
 
-        RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, direction, swordLength);
-        foreach (RaycastHit2D col in cols)
+        float arcAccuracy = 0.1f;
+        int arcSize = 45;
+        for (int i = 0; i < arcSize; i++)
         {
-            if (col.transform.gameObject.tag == "Enemy")
+            RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, direction, swordLength);
+            foreach (RaycastHit2D col in cols)
             {
-                Debug.Log("DAMAGE AN ENEMY");
-                if (col.transform.GetComponent<EnemyBase>() != null)
-                    col.transform.GetComponent<EnemyBase>().TakeDamage(1);
+                if (col.transform.gameObject.tag == "Enemy")
+                {
+                    Debug.Log("DAMAGE AN ENEMY");
+                    if (col.transform.GetComponent<EnemyBase>() != null)
+                        col.transform.GetComponent<EnemyBase>().TakeDamage(1);
+                }
             }
         }
     }

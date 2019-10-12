@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6768688222535098319}
   - component: {fileID: 6768688222535098318}
   - component: {fileID: 853791386810731404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemyhard (Thickems)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6768688223847631978}
   - component: {fileID: 6768688223847631979}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
