@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         else
             GameObject.Destroy(createdSword);
 
-        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
+        if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
         }
@@ -66,69 +66,92 @@ public class Player : MonoBehaviour
         // So we need to rotate the sword to be in that direction
         swordObject.transform.right = -direction.normalized;
 
+        float directionAngle = 0;
+
         #region Sword Directions
         if (direction.x > 0)
         {
             x = -1;
             y = 0;
+            directionAngle = 0f;
         }
-        if(direction.x < 0)
+        if (direction.x < 0)
         {
             x = 1;
             y = 0;
+
+            directionAngle = 180f;
         }
         if (direction.y > 0)
         {
             x = 0;
             y = -1;
+
+            directionAngle = 90f;
         }
         if (direction.y < 0)
         {
             x = 0;
             y = 1;
+
+            directionAngle = 270f;
         }
 
         if (direction.x > 0 && direction.y > 0)
         {
             x = -1;
             y = -1;
+
+            directionAngle = 45f;
         }
         if (direction.x < 0 && direction.y < 0)
         {
             x = 1;
             y = 1;
+
+
+            directionAngle = 225f;
         }
         if (direction.x < 0 && direction.y > 0)
         {
             x = 1;
             y = -1;
+
+            directionAngle = 135f;
         }
         if (direction.x > 0 && direction.y < 0)
         {
             x = -1;
             y = 1;
+
+            directionAngle = 315f;
         }
         #endregion
 
         createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
 
         float arcAccuracy = 0.1f;
-        int arcSize = 45;
-        for (int i = 0; i < arcSize; i++)
+        float arcSize = 60;
+        for (float i = -(arcSize / 2); i < arcSize/2; i += arcAccuracy)
         {
-            RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, direction, swordLength);
+            float angle = (directionAngle + i) * Mathf.Deg2Rad;
+
+            Vector3 rot = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+
+            //Debug.DrawRay(transform.position, rot.normalized * swordLength);
+
+            RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
             {
                 if (col.transform.gameObject.tag == "Enemy")
                 {
-                    Debug.Log("DAMAGE AN ENEMY");
                     if (col.transform.GetComponent<EnemyBase>() != null)
                         col.transform.GetComponent<EnemyBase>().TakeDamage(1);
+                    i = arcSize / 2;
                 }
             }
         }
     }
-
     public void TakeDamage(float amt)
     {
         hp -= amt;
