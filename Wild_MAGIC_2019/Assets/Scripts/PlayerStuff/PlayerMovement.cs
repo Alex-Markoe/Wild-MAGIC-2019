@@ -18,19 +18,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
         if (direction.magnitude > 1)
             direction = direction.normalized;
     }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+    }
     public Vector3 GetDirection()
     {
         return direction;
-    }
-
-    private void FixedUpdate()
-    {
-        rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
     }
 }
