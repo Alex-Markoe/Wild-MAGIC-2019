@@ -6,8 +6,21 @@ public class EnemyMovementHard : EnemyMovement
 {
     public float attackTimer;
     public float attackTimerInterval = 2f;
-    
 
+    public override void Update()
+    {
+        base.Update();
+        if(attackTimer>0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+        if(colliding && attackTimer <= 0)
+        {
+            player.TakeDamage(1);
+            attackTimer = attackTimerInterval;
+        }
+
+    }
     //  hard movement
     public override void Move()
     {
@@ -19,21 +32,9 @@ public class EnemyMovementHard : EnemyMovement
     //  attacks on collision
     public override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject.tag == "Player")
         {
             colliding = true;
         }
-        GameObject toCollide = collision.gameObject;
-        attackTimer += Time.deltaTime;
-        if (attackTimer > attackTimerInterval)
-        {
-            if (toCollide == player)
-            {
-                //  animate attack
-                player.TakeDamage(1);
-            }
-            attackTimer = 0;
     }
-}
-
 }

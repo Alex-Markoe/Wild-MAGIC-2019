@@ -84,19 +84,10 @@ public class EnemyMovement : MonoBehaviour
     //  collision with player
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player )
+        if (collision.gameObject.tag == "Player" )
         {
             colliding = true;
-        }
-        GameObject toCollide = collision.gameObject;
-        waitTimer += Time.deltaTime;
-        if (waitTimer > waitTimerInterval)
-        {
-            if (toCollide == player)
-            {
-                player.TakeDamage(1);
-            }
-            waitTimer = 0;
+            player.TakeDamage(1);
         }
     }
 

@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8614871918344098524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.81, y: 0.44, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0.15}
   m_Children:
   - {fileID: 8614871918194350076}
@@ -232,6 +232,7 @@ MonoBehaviour:
   waitTimer: 0
   waitTimerInterval: 1
   colliding: 1
+  playerOBJ: {fileID: 0}
   bullet: {fileID: 6897614469645298304, guid: dc284e35c4b912348b4501a7bcfa7d47, type: 3}
   attackTimer: 0
   attackTimerInterval: 3

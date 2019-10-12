@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
 
     public void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(30, 30, Screen.width, Screen.height));
+        GUILayout.BeginArea(new Rect(10, 10, Screen.width, Screen.height));
         GUILayout.BeginHorizontal();
         GUILayout.BeginVertical();
 
