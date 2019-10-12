@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8614871918194350076}
   - component: {fileID: 8614871918194350067}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8614871918344098514}
   - component: {fileID: 8614871918344098515}
   - component: {fileID: 9193019742291316313}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8614871918344098524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.81, y: 0.44, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0.15}
   m_Children:
   - {fileID: 8614871918194350076}
@@ -182,7 +182,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8614871918344098514
 BoxCollider2D:
@@ -232,6 +232,7 @@ MonoBehaviour:
   waitTimer: 0
   waitTimerInterval: 1
   colliding: 1
+  playerOBJ: {fileID: 0}
   bullet: {fileID: 6897614469645298304, guid: dc284e35c4b912348b4501a7bcfa7d47, type: 3}
   attackTimer: 0
   attackTimerInterval: 3

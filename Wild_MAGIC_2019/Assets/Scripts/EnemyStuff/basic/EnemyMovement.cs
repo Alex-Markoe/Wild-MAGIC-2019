@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     public float waitTimer;
     public float waitTimerInterval = 1;
     public bool colliding = true;
+    public GameObject playerOBJ;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentTime = Time.time;
         colliding = false;
+        playerOBJ = GameObject.FindGameObjectWithTag("Player");
+        player = playerOBJ.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -81,19 +84,10 @@ public class EnemyMovement : MonoBehaviour
     //  collision with player
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == player )
+        if (collision.gameObject.tag == "Player" )
         {
             colliding = true;
-        }
-        GameObject toCollide = collision.gameObject;
-        waitTimer += Time.deltaTime;
-        if (waitTimer > waitTimerInterval)
-        {
-            if (toCollide == player)
-            {
-                player.TakeDamage(1);
-            }
-            waitTimer = 0;
+            player.TakeDamage(1);
         }
     }
 

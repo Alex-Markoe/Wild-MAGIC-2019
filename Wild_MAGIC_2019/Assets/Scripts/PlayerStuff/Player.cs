@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float movementSpeed = 3f;
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
+    public float swordLength = 2;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
     [Space(15)]
     public GameObject swordObject;
+    private GameObject createdSword;
 
     [Space(15)]
     [Header("PlayerUI")]
@@ -36,16 +38,24 @@ public class Player : MonoBehaviour
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
-            swordObject.SetActive(false);
+            GameObject.Destroy(createdSword);
 
         if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
         }
+
+        if(hp <= 0)
+        {
+            //Die();
+        }
     }
 
     void Attack()
     {
+        if (createdSword != null)
+            GameObject.Destroy(createdSword);
+
         // Start the sword timer
         swordTimer = attackTime;
 
@@ -56,54 +66,92 @@ public class Player : MonoBehaviour
         // So we need to rotate the sword to be in that direction
         swordObject.transform.right = -direction.normalized;
 
+        float directionAngle = 0;
+
         #region Sword Directions
         if (direction.x > 0)
         {
             x = -1;
             y = 0;
+            directionAngle = 0f;
         }
-        if(direction.x < 0)
+        if (direction.x < 0)
         {
             x = 1;
             y = 0;
+
+            directionAngle = 180f;
         }
         if (direction.y > 0)
         {
             x = 0;
             y = -1;
+
+            directionAngle = 90f;
         }
         if (direction.y < 0)
         {
             x = 0;
             y = 1;
+
+            directionAngle = 270f;
         }
 
         if (direction.x > 0 && direction.y > 0)
         {
             x = -1;
             y = -1;
+
+            directionAngle = 45f;
         }
         if (direction.x < 0 && direction.y < 0)
         {
             x = 1;
             y = 1;
+
+
+            directionAngle = 225f;
         }
         if (direction.x < 0 && direction.y > 0)
         {
             x = 1;
             y = -1;
+
+            directionAngle = 135f;
         }
         if (direction.x > 0 && direction.y < 0)
         {
             x = -1;
             y = 1;
+
+            directionAngle = 315f;
         }
         #endregion
 
-        swordObject.transform.right = new Vector3(x, y, 0);
-        swordObject.SetActive(true);
-    }
+        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
 
+        float arcAccuracy = 0.1f;
+        float arcSize = 60;
+        for (float i = -(arcSize / 2); i < arcSize/2; i += arcAccuracy)
+        {
+            float angle = (directionAngle + i) * Mathf.Deg2Rad;
+
+            Vector3 rot = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+
+            //Debug.DrawRay(transform.position, rot.normalized * swordLength);
+
+            RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
+            foreach (RaycastHit2D col in cols)
+            {
+                if (col.transform.gameObject.tag == "Enemy")
+                {
+                    if (col.transform.GetComponent<EnemyBase>() != null)
+                        col.transform.GetComponent<EnemyBase>().TakeDamage(1);
+                    i = arcSize / 2;
+                }
+            }
+        }
+    }
     public void TakeDamage(float amt)
     {
         hp -= amt;
@@ -114,14 +162,14 @@ public class Player : MonoBehaviour
         return transform.position;
     }
 
-    public void DamageEnemy()
+    void Die()
     {
-
+        GameObject.Destroy(this.gameObject);
     }
 
     public void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(30, 30, Screen.width, Screen.height));
+        GUILayout.BeginArea(new Rect(10, 10, Screen.width, Screen.height));
         GUILayout.BeginHorizontal();
         GUILayout.BeginVertical();
 

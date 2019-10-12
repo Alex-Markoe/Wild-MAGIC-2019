@@ -17,7 +17,8 @@ public class EnemyBase : MonoBehaviour
     {
         if(health == 0)
         {
-            Destroy(this);
+            Destroy(gameObject);
+            //   make a corpse
         }
     }
 
