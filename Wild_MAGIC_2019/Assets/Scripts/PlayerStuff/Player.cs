@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float movementSpeed = 3f;
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
+    public float swordLength = 2;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
     [Space(15)]
     public GameObject swordObject;
+    public GameObject createdSword;
 
     [Space(15)]
     [Header("PlayerUI")]
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
-            swordObject.SetActive(false);
+            GameObject.Destroy(createdSword);
 
         if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
         {
@@ -46,6 +48,9 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
+        if (createdSword != null)
+            GameObject.Destroy(createdSword);
+
         // Start the sword timer
         swordTimer = attackTime;
 
@@ -100,8 +105,18 @@ public class Player : MonoBehaviour
         }
         #endregion
 
-        swordObject.transform.right = new Vector3(x, y, 0);
-        swordObject.SetActive(true);
+        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
+
+        RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, direction, swordLength);
+        foreach (RaycastHit2D col in cols)
+        {
+            if (col.transform.gameObject.tag == "Enemy")
+            {
+                Debug.Log("DAMAGE AN ENEMY");
+                if (col.transform.GetComponent<EnemyBase>() != null)
+                    col.transform.GetComponent<EnemyBase>().TakeDamage(1);
+            }
+        }
     }
 
     public void TakeDamage(float amt)

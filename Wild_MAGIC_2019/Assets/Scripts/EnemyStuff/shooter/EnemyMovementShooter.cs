@@ -32,6 +32,6 @@ public class EnemyMovementShooter : EnemyMovement
     //  shoots a bullet
     public void Attack()
     {
-        Instantiate(bullet, transform);
+        Instantiate(bullet, transform.position, Quaternion.identity);
     }
 }

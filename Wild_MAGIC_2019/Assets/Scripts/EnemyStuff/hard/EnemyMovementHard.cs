@@ -19,7 +19,10 @@ public class EnemyMovementHard : EnemyMovement
     //  attacks on collision
     public override void OnCollisionEnter2D(Collision2D collision)
     {
-        colliding = true;
+        if (collision.gameObject == player)
+        {
+            colliding = true;
+        }
         GameObject toCollide = collision.gameObject;
         attackTimer += Time.deltaTime;
         if (attackTimer > attackTimerInterval)
@@ -27,7 +30,7 @@ public class EnemyMovementHard : EnemyMovement
             if (toCollide == player)
             {
                 //  animate attack
-                player.TakeDamage(2);
+                player.TakeDamage(1);
             }
             attackTimer = 0;
     }
