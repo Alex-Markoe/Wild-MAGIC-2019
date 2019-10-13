@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!source.isPlaying)
+        if (!source.isPlaying)
         {
             source.Play();
         }
@@ -62,69 +62,35 @@ public class GameManager : MonoBehaviour
                 cutsceneActive = true;
                 first = true;
                 cutsceneFirst = true;
-                SceneManager.LoadScene(7);
+                SceneManager.LoadScene(2);
             }
         }
-        if(SceneManager.GetActiveScene().buildIndex == 7)
-        {
-            if(first)
-            {
-                cutsceneTimer = cutsceneMax;
-                first = false;
-            }
-            if (cutsceneTimer > 0)
-            {
-                cutsceneTimer -= Time.deltaTime;
-            }
-            else if (cutsceneActive)
-            {
-                first = true;
-                cutsceneActive = false;
-                StartCutscene();
-            }
-        }
-        if (SceneManager.GetActiveScene().buildIndex == 8)
-        {
-            if (cutsceneFirst)
-            {
-                cutsceneTimer = cutsceneMax;
-                cutsceneFirst = false;
-            }
-            if (cutsceneTimer > 0)
-            {
-                cutsceneTimer -= Time.deltaTime;
-            }
-            else if (cutsceneEndActive)
-            {
-               cutsceneEndActive = false;
-               first = true;
-               EndCutscene();
-            }
-        }
-
-        if (SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             //source.Stop();
             source.clip = bossSong;
-            if (playerChosen == CardType.Sun)
+            if (first)
             {
-                currentLight = sunLight;
-                for (int i = 0; i < enemyManager.enemies.Length; i++)
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                if (playerChosen == CardType.Sun)
                 {
-                    enemyManager.enemies[i].movementSpeed *= 5f;
+                    currentLight = sunLight;
+                    for (int i = 0; i < enemyManager.enemies.Length; i++)
+                    {
+                        enemyManager.enemies[i].movementSpeed *= 5f;
+                    }
                 }
-            }
-            else if (playerChosen == CardType.Death)
-            {
-                player.hp = 1;
-                player.attackDamage *= 2;
-                currentLight = deathLight;
-            }
-            else if (playerChosen == CardType.Moon)
-            {
-                currentLight = moonLight;
-                player.dashing = true;
-
+                else if (playerChosen == CardType.Death)
+                {
+                    player.hp = 1;
+                    player.attackDamage *= 2;
+                    currentLight = deathLight;
+                }
+                else if (playerChosen == CardType.Moon)
+                {
+                    currentLight = moonLight;
+                    player.dashing = true;
+                }
             }
         }
         else
@@ -132,7 +98,7 @@ public class GameManager : MonoBehaviour
             //source.Stop();
             source.clip = regularSong;
         }
-        if(SceneManager.GetActiveScene().buildIndex == 2)
+        if(SceneManager.GetActiveScene().buildIndex == 3)
         {
             if(first)
             {
@@ -164,33 +130,34 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        if(SceneManager.GetActiveScene().buildIndex == 32 || SceneManager.GetActiveScene().buildIndex == 5)
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             if (player.hp <= 0)
             {
                 first = true;
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene(7);
             }
         }
     }
 
     public void Win()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(6);
     }
 
     public void FinalDoor()
     {
-        SceneManager.LoadScene(8);
+        SceneManager.LoadScene(4);
     }
 
     public void StartCutscene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
     public void EndCutscene()
     {
-        SceneManager.LoadScene(3);
+        first = true;
+        SceneManager.LoadScene(5);
     }
 }

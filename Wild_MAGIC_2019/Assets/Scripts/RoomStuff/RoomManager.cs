@@ -30,6 +30,8 @@ public class RoomManager : MonoBehaviour
     {
         source.Play();
         p.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        p.GetComponent<PlayerMovement>().dashTimer = -1;
+        p.GetComponent<PlayerMovement>().dashing = false;
         rooms[currentRoom.roomIndex].firstClear = true;
         this.roomIndex = roomIndex;
         cam.transform.position = rooms[roomIndex].center;
