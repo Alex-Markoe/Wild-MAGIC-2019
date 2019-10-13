@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
             else if(playerChosen == CardType.Moon)
             {
                 //Will Change players radius to shrink and implement dash attack soon
+                player.dashing = true;
             }
 
         }

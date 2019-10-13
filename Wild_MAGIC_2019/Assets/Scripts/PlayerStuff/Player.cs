@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
     public float swordLength = 2;
+    public bool dashing = false;
+    public float lightRadius = 2;
+    public Transform lightMask;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -33,6 +36,12 @@ public class Player : MonoBehaviour
         pMove.movementSpeed = movementSpeed;
     }
 
+    void SetLightRadius(float amt)
+    {
+        lightRadius = amt;
+        lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,15 +58,14 @@ public class Player : MonoBehaviour
             Attack();
             pMove.attacking = true;
         }
-
-        if(hp <= 0)
-        {
-            //Die();
-        }
     }
 
     void Attack()
     {
+        if(dashing)
+        {
+
+        }
         if (createdSword != null)
             GameObject.Destroy(createdSword);
 
