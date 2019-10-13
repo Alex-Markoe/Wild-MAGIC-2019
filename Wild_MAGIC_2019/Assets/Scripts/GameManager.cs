@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float currentLight;
     public bool first;
     public float cutsceneTimer;
-    public float cutsceneMax = 5f;
+    public float cutsceneMax = 3f;
     public bool cutsceneActive;
 
     private int sceneIndex;
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
                     Destroy(cardManager.cardList[0]);
                     cardManager.cardList.RemoveAt(0);
                 }
+                cutsceneActive = true;
                 SceneManager.LoadScene(7);
             }
         }
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
             else if (cutsceneActive)
             {
                 first = true;
+                cutsceneActive = false;
                 StartCutscene();
             }
         }
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
             }
             else if (cutsceneActive)
             {
+                cutsceneActive = false;
                 first = true;
                EndCutscene();
             }
