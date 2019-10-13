@@ -9,7 +9,7 @@ public class BossShootAttack : BossAttack
 
     private void Start()
     {
-        attackType = "Shoot";
+        attackType = "Cards";
     }
 
     public override void DoAttack()

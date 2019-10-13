@@ -20,8 +20,6 @@ public class Boss : MonoBehaviour
 
     private Animator anim;
     private float animRangeX = .5f;
-    private bool lunging;
-    private bool cards;
 
     private void Start()
     {
@@ -59,7 +57,6 @@ public class Boss : MonoBehaviour
 
         if (!chargeForAttack)
         {
-            if(currentAttack.attackComplete)
             if (currentAttack == null)
             {
                 if (Vector3.Distance(p.transform.position, transform.position) >= 2)
@@ -127,8 +124,11 @@ public class Boss : MonoBehaviour
     private void SetAnim()
     {
         Vector3 direction = p.transform.position - transform.position;
-        Debug.Log(direction);
+        //Debug.Log(direction);
+
         int spriteDirection = 1;
+        bool lunging = false;
+        bool cards = false;
 
         if (direction.x < animRangeX && direction.x > -animRangeX)
         {
@@ -141,7 +141,19 @@ public class Boss : MonoBehaviour
             spriteDirection = 1;
         else if (direction.x < 0)
             spriteDirection = 2;
-        Debug.Log(spriteDirection);
+
+        //Debug.Log(spriteDirection);
+        if (currentAttack != null && !currentAttack.attackComplete)
+        {
+            if (currentAttack.attackType == "Dash")
+                lunging = true;
+            else if (currentAttack.attackType == "Cards")
+                cards = true;
+        }
+
+        anim.SetBool("Charging", chargeForAttack);
+        anim.SetBool("Lunging", lunging);
+        anim.SetBool("Cards", cards);
         anim.SetInteger("Direction", spriteDirection);
     }
 }
