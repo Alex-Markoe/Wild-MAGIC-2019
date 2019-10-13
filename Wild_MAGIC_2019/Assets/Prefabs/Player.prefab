@@ -284,6 +284,7 @@ MonoBehaviour:
   lightRadius: 2
   lightMask: {fileID: 3654224698581798753}
   flickerSpeed: 0.1
+  rb: {fileID: 0}
   pMove: {fileID: 4413059963424685605}
   swordObject: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
     type: 3}
@@ -302,6 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   attacking: 0
+  direction: {x: 0, y: 0, z: 0}
+  player: {fileID: 4413059963424685604}
+  dashTimer: 0
+  dashing: 0
 --- !u!1 &6088751126727337974
 GameObject:
   m_ObjectHideFlags: 0
