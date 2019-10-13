@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             pMove.attacking = false;
         }
 
-        if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
+        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
             pMove.attacking = true;
@@ -67,9 +67,6 @@ public class Player : MonoBehaviour
         // Get the direction of the attack based off the player movement
         Vector3 direction = pMove.GetDirection();
         int x = 0, y = 0;
-
-        // So we need to rotate the sword to be in that direction
-        swordObject.transform.right = -direction.normalized;
 
         float directionAngle = 0;
 
@@ -133,7 +130,7 @@ public class Player : MonoBehaviour
         }
         #endregion
 
-        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
+        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, -new Vector3(x, y, 0)), transform);
 
         float arcAccuracy = 0.1f;
         float arcSize = 60;
@@ -143,7 +140,7 @@ public class Player : MonoBehaviour
 
             Vector3 rot = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
 
-            //Debug.DrawRay(transform.position, rot.normalized * swordLength);
+            Debug.DrawRay(transform.position, rot.normalized * swordLength, Color.red / 4);
 
             RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
