@@ -11,10 +11,13 @@ public class RoomManager : MonoBehaviour
     public Player p;
     public ScreenShake screenShake;
 
+    private AudioSource source;
+
     // Start is called before the first frame update
     void Start()
     {
         currentRoom = rooms[0];
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class RoomManager : MonoBehaviour
 
     public void MoveRoom(int roomIndex, Vector3 pPos)
     {
+        source.Play();
         p.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         rooms[currentRoom.roomIndex].firstClear = true;
         this.roomIndex = roomIndex;
