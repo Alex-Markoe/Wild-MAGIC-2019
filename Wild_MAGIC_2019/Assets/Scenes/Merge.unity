@@ -3088,6 +3088,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: lightMask
+      value: 
+      objectReference: {fileID: 600947630}
+    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: lightRadius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4756,6 +4766,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 13}
   m_EdgeRadius: 0
+--- !u!4 &600947630 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3654224698581798753, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 247105492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &605974139
 GameObject:
   m_ObjectHideFlags: 0
