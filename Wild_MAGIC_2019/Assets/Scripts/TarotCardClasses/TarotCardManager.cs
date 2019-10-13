@@ -19,6 +19,7 @@ public class TarotCardManager : MonoBehaviour
         totalCamWidth = myCamera.orthographicSize * 2f;
         totalCamHeight = totalCamWidth * myCamera.aspect;
         
+
         cardList = new List<TarotCard>(3);
 
         cardList.Add(CreateCard(CardType.Devil, new Vector3(.5f * -totalCamWidth, (1 / 6) * -totalCamHeight, 0)));
