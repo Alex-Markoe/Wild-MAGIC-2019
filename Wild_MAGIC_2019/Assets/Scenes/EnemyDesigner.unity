@@ -329,6 +329,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4413059963424685602, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c52580f8fb2c3947ae292cb37e684bf, type: 3}
 --- !u!1 &360004826
@@ -396,12 +401,12 @@ PrefabInstance:
     - target: {fileID: 6768688222535098317, guid: b80b36880dc41644dbc8b1bac863c3d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 6768688222535098317, guid: b80b36880dc41644dbc8b1bac863c3d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 6768688222535098317, guid: b80b36880dc41644dbc8b1bac863c3d0,
         type: 3}

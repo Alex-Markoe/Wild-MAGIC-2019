@@ -12,12 +12,17 @@ public class EnemyMovementHard : EnemyMovement
 
     private void Start()
     {
+        rng = Random.Range(1, 9);
+        rb = GetComponent<Rigidbody2D>();
+        currentTime = Time.time;
+        colliding = false;
+        playerOBJ = GameObject.FindGameObjectWithTag("Player");
+        player = playerOBJ.GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();
     }
 
     public override void Update()
     {
-        base.Update();
         if(attackTimer>0)
         {
             attackTimer -= Time.deltaTime;
@@ -31,6 +36,7 @@ public class EnemyMovementHard : EnemyMovement
         }
         Move();
         SetAnim();
+        base.Update();
     }
 
     //  hard movement
