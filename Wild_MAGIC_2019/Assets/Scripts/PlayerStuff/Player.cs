@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float attackTime = 0.05f;
     public float swordLength = 2;
     public bool dashing = false;
+    public float lightRadius = 2;
+    public Transform lightMask;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         pMove.movementSpeed = movementSpeed;
+        lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
     }
 
     // Update is called once per frame

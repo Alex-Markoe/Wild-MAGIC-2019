@@ -279,7 +279,7 @@ MonoBehaviour:
   movementSpeed: 6
   attackDamage: 1
   attackTime: 0.1
-  swordLength: 1.1
+  swordLength: 1.6
   pMove: {fileID: 4413059963424685605}
   swordObject: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
     type: 3}
