@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
     public float swordLength = 2;
+    public bool dashing = false;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -49,15 +50,14 @@ public class Player : MonoBehaviour
             Attack();
             pMove.attacking = true;
         }
-
-        if(hp <= 0)
-        {
-            //Die();
-        }
     }
 
     void Attack()
     {
+        if(dashing)
+        {
+
+        }
         if (createdSword != null)
             GameObject.Destroy(createdSword);
 
