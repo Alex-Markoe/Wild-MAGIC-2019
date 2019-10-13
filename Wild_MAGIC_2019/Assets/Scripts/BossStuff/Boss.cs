@@ -7,10 +7,19 @@ public class Boss : MonoBehaviour
     public BossAttack[] attacks;
     public float actionTimer;
     public float hp;
+    public float movementSpeed = 2f;
 
     private BossAttack currentAttack;
+    private Player p;
+    private Rigidbody2D rb;
 
     private float timer;
+
+    private void Start()
+    {
+        p = GameObject.FindObjectOfType<Player>();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,6 +42,23 @@ public class Boss : MonoBehaviour
             }
 
             timer = actionTimer;
+        }
+
+        if(currentAttack == null)
+        {
+            if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+            {
+                rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+            }
+        } else
+        {
+            if(currentAttack.attackComplete)
+            {
+                if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+                {
+                    rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+                }
+            }
         }
 
         if (timer > 0)
