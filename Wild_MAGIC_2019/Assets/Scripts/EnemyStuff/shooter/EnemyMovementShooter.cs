@@ -19,22 +19,33 @@ public class EnemyMovementShooter : EnemyMovement
 
     public override void Update()
     {
-        attackTimer += Time.deltaTime;
-        if (attackTimer > 1)
-            attacking = false;
-
-        if (attackTimer > attackTimerInterval)
+        if (moving)
         {
-            Attack();
-            attackTimer = 0;
-            attacking = true;
+            attackTimer += Time.deltaTime;
+            if (attackTimer > 1)
+                attacking = false;
+
+            if (attackTimer > attackTimerInterval)
+            {
+                Attack();
+                attackTimer = 0;
+                attacking = true;
+            }
+
+            if (!attacking)
+            {
+                Move();
+                if (!colliding)
+                    rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            }
         }
-
-        if (!attacking)
+        if (movingTimer > movingMax)
         {
-            Move();
-            if (!colliding)
-                rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            moving = true;
+        }
+        else
+        {
+            movingTimer += Time.deltaTime;
         }
 
         SetAnim();

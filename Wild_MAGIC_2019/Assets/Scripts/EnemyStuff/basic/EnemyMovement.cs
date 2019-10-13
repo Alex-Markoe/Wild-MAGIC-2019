@@ -15,6 +15,9 @@ public class EnemyMovement : MonoBehaviour
     public float waitTimerInterval = 1;
     public bool colliding = true;
     public GameObject playerOBJ;
+    public bool moving;
+    public float movingTimer;
+    public float movingMax = 1;
 
     protected Animator anim;
     protected bool attacking;
@@ -40,14 +43,27 @@ public class EnemyMovement : MonoBehaviour
     {
         rng = Random.Range(1, 9);
         currentTime += Time.deltaTime;
-        if (!colliding)
+
+
+        if (moving)
         {
-            rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            if (!colliding)
+            {
+                rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            }
+            if (currentTime > interval)
+            {
+                Move();
+                currentTime = 0;
+            }
         }
-        if (currentTime > interval)
+        if (movingTimer > movingMax)
         {
-            Move();
-            currentTime = 0;
+            moving = true;
+        }
+        else
+        {
+            movingTimer += Time.deltaTime;
         }
 
         SetAnim();
