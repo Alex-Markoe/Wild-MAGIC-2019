@@ -7,7 +7,6 @@ public class EnemyMovementHard : EnemyMovement
     public float attackTimer;
     public float attackTimerInterval = 2f;
 
-    private Animator animZomb;
     private const float angleAnimMax = .4f;
 
     private void Start()
@@ -18,7 +17,7 @@ public class EnemyMovementHard : EnemyMovement
         colliding = false;
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
         player = playerOBJ.GetComponent<Player>();
-        animZomb = GetComponentInChildren<Animator>();
+        anim = GetComponentInChildren<Animator>();
         attacking = false;
     }
 
@@ -51,57 +50,9 @@ public class EnemyMovementHard : EnemyMovement
 
     public override void SetAnim()
     {
-        int x = 0;
-        int y = 0;
-        int spriteDirection = 1;
+        base.SetAnim();
 
-        if (direction.x < -angleAnimMax)
-        {
-            x = -1;
-        }
-        if (direction.x > angleAnimMax)
-        {
-            x = 1;
-        }
-
-        if (direction.y < -angleAnimMax)
-        {
-            y = -1;
-        }
-        if (direction.y > angleAnimMax)
-        {
-            y = 1;
-        }
-
-        if (x > 0)
-        {
-            if (y > 0)
-                spriteDirection = 7;
-            else if (y < 0)
-                spriteDirection = 5;
-            else
-                spriteDirection = 1;
-        }
-        else if (x < 0)
-        {
-            if (y > 0)
-                spriteDirection = 8;
-            else if (y < 0)
-                spriteDirection = 6;
-            else
-                spriteDirection = 2;
-        }
-        else if (y > 0)
-        {
-            spriteDirection = 4;
-        }
-        else if (y < 0)
-        {
-            spriteDirection = 3;
-        }
-
-        animZomb.SetInteger("Direction", spriteDirection);
-        animZomb.SetBool("Attacking", attacking);
+        anim.SetBool("Attacking", attacking);
     }
 
     //  attacks on collision
