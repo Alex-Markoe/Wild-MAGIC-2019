@@ -280,7 +280,7 @@ MonoBehaviour:
   attackTime: 0.1
   swordLength: 2
   pMove: {fileID: 4413059963424685605}
-  swordObject: {fileID: 40485975145031666, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
+  swordObject: {fileID: 4973054700138804748, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
     type: 3}
   heart: {fileID: 21300000, guid: f46dc0fae2559c94f9456961e895bcb0, type: 3}
 --- !u!114 &4413059963424685605
@@ -296,3 +296,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
+  attacking: 0

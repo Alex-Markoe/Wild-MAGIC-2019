@@ -68,9 +68,6 @@ public class Player : MonoBehaviour
         Vector3 direction = pMove.GetDirection();
         int x = 0, y = 0;
 
-        // So we need to rotate the sword to be in that direction
-        swordObject.transform.right = -direction.normalized;
-
         float directionAngle = 0;
 
         #region Sword Directions
