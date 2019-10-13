@@ -8,6 +8,7 @@ public class EnemyMovementShooter : EnemyMovement
     public float attackTimer;
     public float attackTimerInterval = 3f;
 
+    private bool attacking;
 
     public override void Update()
     {
@@ -18,6 +19,7 @@ public class EnemyMovementShooter : EnemyMovement
             Attack();
             //  animate attack
             attackTimer = 0;
+            attacking = true;
         }
     }
 
@@ -33,5 +35,10 @@ public class EnemyMovementShooter : EnemyMovement
     public void Attack()
     {
         Instantiate(bullet, transform.position, Quaternion.identity);
+    }
+
+    public override void SetAnim()
+    {
+        
     }
 }

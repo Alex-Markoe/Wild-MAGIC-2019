@@ -16,11 +16,14 @@ public class EnemyMovement : MonoBehaviour
     public bool colliding = true;
     public GameObject playerOBJ;
 
+    private Animator animBug;
+
     // Start is called before the first frame update
     void Start()
     {
         rng = Random.Range(1, 9);
         rb = GetComponent<Rigidbody2D>();
+        animBug = GetComponentInChildren<Animator>();
         currentTime = Time.time;
         colliding = false;
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
@@ -41,6 +44,8 @@ public class EnemyMovement : MonoBehaviour
             Move();
             currentTime = 0;
         }
+
+        SetAnim();
     }
 
     //  basic movement
@@ -152,5 +157,7 @@ public class EnemyMovement : MonoBehaviour
         {
             spriteDirection = 3;
         }
+
+        animBug.SetInteger("Direction", spriteDirection);
     }
 }

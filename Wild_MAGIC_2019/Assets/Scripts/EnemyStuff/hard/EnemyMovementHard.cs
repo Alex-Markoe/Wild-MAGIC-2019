@@ -8,7 +8,7 @@ public class EnemyMovementHard : EnemyMovement
     public float attackTimerInterval = 2f;
     public bool attacking;
 
-    private Animator anim;
+    private Animator animZomb;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class EnemyMovementHard : EnemyMovement
         colliding = false;
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
         player = playerOBJ.GetComponent<Player>();
-        anim = GetComponentInChildren<Animator>();
+        animZomb = GetComponentInChildren<Animator>();
     }
 
     public override void Update()
@@ -35,7 +35,7 @@ public class EnemyMovementHard : EnemyMovement
             attacking = true;
         }
         Move();
-        SetAnim();
+        
         base.Update();
     }
 
@@ -98,8 +98,8 @@ public class EnemyMovementHard : EnemyMovement
             spriteDirection = 3;
         }
 
-        anim.SetInteger("Direction", spriteDirection);
-        anim.SetBool("Attacking", attacking);
+        animZomb.SetInteger("Direction", spriteDirection);
+        animZomb.SetBool("Attacking", attacking);
     }
 
     //  attacks on collision
