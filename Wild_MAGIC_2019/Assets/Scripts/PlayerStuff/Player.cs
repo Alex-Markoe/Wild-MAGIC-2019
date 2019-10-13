@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public bool dashing = false;
     public float lightRadius = 2;
     public Transform lightMask;
+    public Rigidbody2D rb;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         pMove.movementSpeed = movementSpeed;
     }
 
-    void SetLightRadius(float amt)
+    public void SetLightRadius(float amt)
     {
         lightRadius = amt;
         lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
@@ -57,15 +58,17 @@ public class Player : MonoBehaviour
         {
             Attack();
             pMove.attacking = true;
+            pMove.dashing = true;
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         if(dashing)
         {
-
+            pMove.Dash();
         }
+
         if (createdSword != null)
             GameObject.Destroy(createdSword);
 

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(playerChosen);
             if (playerChosen == CardType.Devil)
             {
-                //Change the lights radius
+                player.SetLightRadius(3f);
                 for (int i = 0; i < enemyManager.enemies.Length; i++)
                 {
                     enemyManager.enemies[i].movementSpeed *= 5f;
@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour
             }
             else if(playerChosen == CardType.WheelOfFortune)
             {
-                //Will Change players radius to shrink and implement dash attack soon
+                player.SetLightRadius(1.5f);
                 player.dashing = true;
+
             }
 
         }
