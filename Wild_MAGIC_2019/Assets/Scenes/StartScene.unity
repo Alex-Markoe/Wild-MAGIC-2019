@@ -158,6 +158,8 @@ MonoBehaviour:
   moonLight: 1.5
   currentLight: 0
   first: 0
+  bossSong: {fileID: 8300000, guid: 18e9fd4fae75e4046bbfa5595d0138ee, type: 3}
+  regularSong: {fileID: 8300000, guid: e4b29295ef937cd4eb3b6cb29ed3aecc, type: 3}
 --- !u!4 &97916617
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e4b29295ef937cd4eb3b6cb29ed3aecc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
