@@ -19,13 +19,12 @@ public class Boss : MonoBehaviour
     private bool chargeForAttack;
 
     private Animator anim;
-    private bool charging;
-    private bool lunging;
-    private bool cards;
+    private float animRangeX = .5f;
 
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -85,6 +84,7 @@ public class Boss : MonoBehaviour
             Die();
         }
 
+        SetAnim();
         if(chargeForAttack)
         {
             if(chargeTimer <= 0)
@@ -123,6 +123,37 @@ public class Boss : MonoBehaviour
 
     private void SetAnim()
     {
+        Vector3 direction = p.transform.position - transform.position;
+        //Debug.Log(direction);
 
+        int spriteDirection = 1;
+        bool lunging = false;
+        bool cards = false;
+
+        if (direction.x < animRangeX && direction.x > -animRangeX)
+        {
+            if (direction.y > 0)
+                spriteDirection = 3;
+            else if (direction.y < 0)
+                spriteDirection = 4;
+        }
+        else if (direction.x > 0)
+            spriteDirection = 1;
+        else if (direction.x < 0)
+            spriteDirection = 2;
+
+        //Debug.Log(spriteDirection);
+        if (currentAttack != null && !currentAttack.attackComplete)
+        {
+            if (currentAttack.attackType == "Dash")
+                lunging = true;
+            else if (currentAttack.attackType == "Cards")
+                cards = true;
+        }
+
+        anim.SetBool("Charging", chargeForAttack);
+        anim.SetBool("Lunging", lunging);
+        anim.SetBool("Cards", cards);
+        anim.SetInteger("Direction", spriteDirection);
     }
 }

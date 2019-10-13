@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private float invulFlicker = .1f;
     public Color color;
     public float lightTimer;
-    public float lightMax = 15f;
+    private float lightMax = 15f;
     public bool lightShrink;
     public GameManager gameManager;
     public RoomManager roomManager;
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            SetLightRadius(20);
+            SetLightRadius(30);
         }
     }
 
