@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
 
-                if ((previousVerticalAxis == 0 || previousHorizontalAxis == 0) && !source.isPlaying)
+                if ((previousVerticalAxis != 0 || previousHorizontalAxis != 0) && !source.isPlaying)
                 {
                     source.clip = clip;
                     source.Play();
