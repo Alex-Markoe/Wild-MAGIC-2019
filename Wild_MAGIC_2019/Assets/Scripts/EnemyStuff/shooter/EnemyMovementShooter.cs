@@ -114,8 +114,6 @@ public class EnemyMovementShooter : EnemyMovement
     public override void SetAnim()
     {
         base.SetAnim();
-        if (attacking)
-            Debug.Log(direction);
 
         anim.SetBool("Attacking", attacking);
     }
