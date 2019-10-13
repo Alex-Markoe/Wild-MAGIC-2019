@@ -16,16 +16,23 @@ public class GameManager : MonoBehaviour
 
     private int sceneIndex;
     private static CardType playerChosen;
+
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         first = true;
         Object.DontDestroyOnLoad(this);
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!source.isPlaying)
+        {
+            source.Play();
+        }
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             if(first)
