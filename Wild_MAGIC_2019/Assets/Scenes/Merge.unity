@@ -3074,7 +3074,7 @@ PrefabInstance:
         type: 3}
       propertyPath: swordObject
       value: 
-      objectReference: {fileID: 9094460744201598441, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
+      objectReference: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
         type: 3}
     - target: {fileID: 4413059963424685606, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
