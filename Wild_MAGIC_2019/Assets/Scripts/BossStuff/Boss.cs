@@ -27,12 +27,15 @@ public class Boss : MonoBehaviour
     public float movingTimer;
     public float movingMax = 1;
 
+    public AudioSource source;
+
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindObjectOfType<GameManager>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -89,6 +92,7 @@ public class Boss : MonoBehaviour
             {
                 if (chargeTimer <= 0)
                 {
+                    source.Play();
                     Attack();
                     chargeForAttack = false;
                 }

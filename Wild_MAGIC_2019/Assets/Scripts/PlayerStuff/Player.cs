@@ -261,6 +261,8 @@ public class Player : MonoBehaviour
             {
                 if (col.transform.gameObject.tag == "Enemy" || col.transform.gameObject.tag == "Boss")
                 {
+                    source.clip = audioClips[3];
+                    source.Play();
                     if (col.transform.GetComponent<EnemyBase>() != null)
                         col.transform.GetComponent<EnemyBase>().TakeDamage(1);
 
