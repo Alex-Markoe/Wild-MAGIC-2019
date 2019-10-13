@@ -15,6 +15,11 @@ public class Boss : MonoBehaviour
 
     private float timer;
 
+    private Animator anim;
+    private bool charging;
+    private bool lunging;
+    private bool cards;
+
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
@@ -90,5 +95,10 @@ public class Boss : MonoBehaviour
     void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    private void SetAnim()
+    {
+
     }
 }

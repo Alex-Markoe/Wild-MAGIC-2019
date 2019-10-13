@@ -7,6 +7,11 @@ public class BossShootAttack : BossAttack
 
     public float bulletSpeed;
 
+    private void Start()
+    {
+        attackType = "Shoot";
+    }
+
     public override void DoAttack()
     {
         GameObject bossBullet = (GameObject)Resources.Load("bossBullet");

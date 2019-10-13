@@ -15,6 +15,7 @@ public class BossDashAttack : BossAttack
 
     private void Start()
     {
+        attackType = "Dash";
         p = GameObject.FindObjectOfType<Player>();
         rb = GetComponent<Rigidbody2D>();
     }
