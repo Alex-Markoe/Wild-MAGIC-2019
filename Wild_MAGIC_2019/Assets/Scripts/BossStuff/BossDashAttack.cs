@@ -22,12 +22,13 @@ public class BossDashAttack : BossAttack
     void Update()
     {
         if (dashTarget == Vector3.zero)
+        {
             dashTarget = p.transform.position;
+        }
 
-        if (Vector3.Distance(transform.position, dashTarget) > 0.5f)
+        if (Vector3.Distance(transform.position, dashTarget) >= 1.5f)
         {
             rb.MovePosition(Vector3.Lerp(transform.position, dashTarget, dashSpeed * Time.deltaTime));
-
         }
         else
         {
@@ -46,5 +47,14 @@ public class BossDashAttack : BossAttack
         dashTarget = Vector3.zero;
 
         base.DoAttack();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag != "Player")
+        {
+            attackComplete = true;
+            rb.velocity = Vector3.zero;
+        }
     }
 }
