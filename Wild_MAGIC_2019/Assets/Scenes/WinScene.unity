@@ -187,6 +187,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5549013950766461342, guid: 5497efb3242d1234497a2474ca2ecce8,
+        type: 3}
+      propertyPath: indexOfTransition
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5497efb3242d1234497a2474ca2ecce8, type: 3}
 --- !u!1 &1245318166
@@ -304,6 +309,16 @@ MonoBehaviour:
   player: {fileID: 0}
   cardManager: {fileID: 0}
   enemyManager: {fileID: 0}
+  sunLight: 2.75
+  deathLight: 2
+  moonLight: 1.5
+  currentLight: 0
+  first: 0
+  cutsceneTimer: 0
+  cutsceneMax: 5
+  cutsceneActive: 0
+  bossSong: {fileID: 0}
+  regularSong: {fileID: 0}
 --- !u!4 &1325255152
 Transform:
   m_ObjectHideFlags: 0
@@ -388,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 3662982331042960692, guid: 912210565020b1e43aa3f3004641a3e6,
         type: 3}
       propertyPath: indexOfTransition
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3662982331042960692, guid: 912210565020b1e43aa3f3004641a3e6,
         type: 3}

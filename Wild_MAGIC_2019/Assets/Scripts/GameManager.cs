@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         first = true;
         Object.DontDestroyOnLoad(this);
         source = GetComponent<AudioSource>();
+        cutsceneActive = true;
     }
 
     // Update is called once per frame
@@ -55,34 +56,41 @@ public class GameManager : MonoBehaviour
                     Destroy(cardManager.cardList[0]);
                     cardManager.cardList.RemoveAt(0);
                 }
-                first = true;
                 SceneManager.LoadScene(7);
             }
         }
         if(SceneManager.GetActiveScene().buildIndex == 7)
         {
+            if(first)
+            {
+                cutsceneTimer = cutsceneMax;
+                first = false;
+            }
             if (cutsceneTimer > 0)
             {
                 cutsceneTimer -= Time.deltaTime;
-                StartCutscene();
             }
             else if (cutsceneActive)
             {
-                cutsceneTimer = cutsceneMax;
-                cutsceneActive = false;
+                first = true;
+                StartCutscene();
             }
         }
         if (SceneManager.GetActiveScene().buildIndex == 8)
         {
+            if (first)
+            {
+                cutsceneTimer = cutsceneMax;
+                first = false;
+            }
             if (cutsceneTimer > 0)
             {
                 cutsceneTimer -= Time.deltaTime;
-                EndCutscene();
             }
             else if (cutsceneActive)
             {
-                cutsceneTimer = cutsceneMax;
-                cutsceneActive = false;
+                first = true;
+               EndCutscene();
             }
         }
 
@@ -141,15 +149,17 @@ public class GameManager : MonoBehaviour
 
     public void FinalDoor()
     {
+        cutsceneActive = true;
         SceneManager.LoadScene(8);
     }
 
     public void StartCutscene()
     {
-        SceneManager.LoadScene(3);
+        first = true;
+        SceneManager.LoadScene(2);
     }
     public void EndCutscene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }
