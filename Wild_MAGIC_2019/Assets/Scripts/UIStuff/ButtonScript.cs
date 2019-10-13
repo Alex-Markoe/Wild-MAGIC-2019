@@ -42,7 +42,6 @@ public class ButtonScript : MonoBehaviour
         source.Play();
         if (indexOfTransition == -1)
         {
-            Debug.Log("Closed");
             Application.Quit();
         }
         else
