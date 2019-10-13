@@ -25,6 +25,7 @@ public class RoomManager : MonoBehaviour
 
     public void MoveRoom(int roomIndex, Vector3 pPos)
     {
+        p.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         rooms[currentRoom.roomIndex].firstClear = true;
         this.roomIndex = roomIndex;
         cam.transform.position = rooms[roomIndex].center;
@@ -32,14 +33,18 @@ public class RoomManager : MonoBehaviour
         p.lightShrink = true;
         rooms[roomIndex].EnableRoom();
         currentRoom = rooms[roomIndex];
+        cam.GetComponent<Camera>().orthographicSize = currentRoom.camSize;
         p.transform.position = pPos;
         if(!currentRoom.firstClear)
         {
             p.GetComponent<PlayerMovement>().movingTimer = 0f;
             p.GetComponent<PlayerMovement>().moving = false;
-            foreach(GameObject enemy in currentRoom.enemies)
+            if (currentRoom.enemies.Length > 0)
             {
-                enemy.GetComponent<EnemyMovement>();
+                foreach (GameObject enemy in currentRoom.enemies)
+                {
+                    enemy.GetComponent<EnemyMovement>();
+                }
             }
         }
     }
