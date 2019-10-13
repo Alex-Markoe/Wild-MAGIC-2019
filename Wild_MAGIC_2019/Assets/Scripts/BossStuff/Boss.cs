@@ -59,7 +59,7 @@ public class Boss : MonoBehaviour
         {
             if (currentAttack == null)
             {
-                if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+                if (Vector3.Distance(p.transform.position, transform.position) >= 0.1f)
                 {
                     rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
                 }

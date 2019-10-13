@@ -10,6 +10,7 @@ public class Room : MonoBehaviour
     public bool cleared;
     public bool firstClear;
     public Vector3 center;
+    public float camSize;
     public int roomIndex;
 
     // Start is called before the first frame update

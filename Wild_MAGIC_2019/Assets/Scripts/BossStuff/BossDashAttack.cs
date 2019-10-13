@@ -27,6 +27,7 @@ public class BossDashAttack : BossAttack
         if (Vector3.Distance(transform.position, dashTarget) > 0.5f)
         {
             rb.MovePosition(Vector3.Lerp(transform.position, dashTarget, dashSpeed * Time.deltaTime));
+
         }
         else
         {
