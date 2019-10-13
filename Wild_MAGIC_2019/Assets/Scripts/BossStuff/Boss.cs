@@ -16,13 +16,14 @@ public class Boss : MonoBehaviour
     private float timer;
 
     private Animator anim;
-    private bool charging;
+    private float animRangeX = .5f;
     private bool lunging;
     private bool cards;
 
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -73,6 +74,8 @@ public class Boss : MonoBehaviour
         {
             Die();
         }
+
+        SetAnim();
     }
 
     void Attack()
@@ -99,6 +102,22 @@ public class Boss : MonoBehaviour
 
     private void SetAnim()
     {
+        Vector3 direction = p.transform.position - transform.position;
+        Debug.Log(direction);
+        int spriteDirection = 1;
 
+        if (direction.x < animRangeX && direction.x > -animRangeX)
+        {
+            if (direction.y > 0)
+                spriteDirection = 3;
+            else if (direction.y < 0)
+                spriteDirection = 4;
+        }
+        else if (direction.x > 0)
+            spriteDirection = 1;
+        else if (direction.x < 0)
+            spriteDirection = 2;
+        Debug.Log(spriteDirection);
+        anim.SetInteger("Direction", spriteDirection);
     }
 }
