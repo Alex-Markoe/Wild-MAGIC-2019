@@ -11,12 +11,17 @@ public class ButtonScript : MonoBehaviour
     private Camera myCamera;
     private SpriteRenderer sprite;
 
+    private AudioSource source;
+
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         myCamera = Camera.main;
+
+        source = GetComponent<AudioSource>();
+        source.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -34,6 +39,7 @@ public class ButtonScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        source.Play();
         if (indexOfTransition == -1)
         {
             Debug.Log("Closed");

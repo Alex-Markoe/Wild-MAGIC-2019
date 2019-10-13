@@ -18,12 +18,21 @@ public class PlayerMovement : MonoBehaviour
     public float movingTimer;
     public float movingMax = 1;
 
+    public AudioSource source;
+    public AudioClip clip;
+
+    private float previousHorizontalAxis;
+    private float previousVerticalAxis;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         moving = true;
+
+        previousHorizontalAxis = 0;
+        previousVerticalAxis = 0;
     }
 
     // Update is called once per frame
@@ -57,6 +66,13 @@ public class PlayerMovement : MonoBehaviour
             if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
             {
                 rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+
+                if ((previousVerticalAxis == 0 || previousHorizontalAxis == 0) && !source.isPlaying)
+                {
+                    source.clip = clip;
+                    source.Play();
+                    Debug.Log("Running");
+                }
             }
         }
         if(movingTimer>movingMax)
@@ -67,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         {
             movingTimer += Time.deltaTime;
         }
-        
+        previousHorizontalAxis = Input.GetAxis("Horizontal");
+        previousVerticalAxis = Input.GetAxis("Vertical");
     }
     public Vector3 GetDirection()
     {

@@ -62,7 +62,7 @@ public class Boss : MonoBehaviour
         {
             if (currentAttack == null)
             {
-                if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+                if (Vector3.Distance(p.transform.position, transform.position) >= 0.1f)
                 {
                     rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
                 }
@@ -137,9 +137,9 @@ public class Boss : MonoBehaviour
         if (direction.x < animRangeX && direction.x > -animRangeX)
         {
             if (direction.y > 0)
-                spriteDirection = 3;
-            else if (direction.y < 0)
                 spriteDirection = 4;
+            else if (direction.y < 0)
+                spriteDirection = 3;
         }
         else if (direction.x > 0)
             spriteDirection = 1;
