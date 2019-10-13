@@ -399,10 +399,15 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6988966100166806836, guid: d23804a94480120489f4cc0e08464850,
+    - target: {fileID: 6988966100166806837, guid: d23804a94480120489f4cc0e08464850,
         type: 3}
       propertyPath: chargeTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988966100166806836, guid: d23804a94480120489f4cc0e08464850,
+        type: 3}
+      propertyPath: chargeTime
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23804a94480120489f4cc0e08464850, type: 3}

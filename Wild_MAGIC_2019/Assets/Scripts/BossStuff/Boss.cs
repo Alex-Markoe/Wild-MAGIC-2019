@@ -8,28 +8,30 @@ public class Boss : MonoBehaviour
     public float actionTimer;
     public float hp;
     public float movementSpeed = 2f;
+    public float chargeTime = 1f;
 
     private BossAttack currentAttack;
     private Player p;
     private Rigidbody2D rb;
 
     private float timer;
+    private float chargeTimer;
+    private bool chargeForAttack;
 
     private Animator anim;
-    private bool charging;
-    private bool lunging;
-    private bool cards;
+    private float animRangeX = .5f;
 
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer <= 0)
+        if (timer <= 0 && !chargeForAttack)
         {
             float rng = Random.Range(0, 8);
 
@@ -37,31 +39,39 @@ public class Boss : MonoBehaviour
             {
                 if (currentAttack == null)
                 {
-                    Attack();
+                    chargeTimer = chargeTime;
+                    chargeForAttack = true;
                 }
                 else
                 {
                     if (currentAttack.attackComplete)
-                        Attack();
+                    {
+                        chargeTimer = chargeTime;
+                        chargeForAttack = true;
+                    }
                 }
             }
 
             timer = actionTimer;
         }
 
-        if(currentAttack == null)
+        if (!chargeForAttack)
         {
-            if (Vector3.Distance(p.transform.position, transform.position) >= 2)
-            {
-                rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
-            }
-        } else
-        {
-            if(currentAttack.attackComplete)
+            if (currentAttack == null)
             {
                 if (Vector3.Distance(p.transform.position, transform.position) >= 2)
                 {
                     rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                if (currentAttack.attackComplete)
+                {
+                    if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+                    {
+                        rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+                    }
                 }
             }
         }
@@ -72,6 +82,20 @@ public class Boss : MonoBehaviour
         if(hp <= 0)
         {
             Die();
+        }
+
+        SetAnim();
+        if(chargeForAttack)
+        {
+            if(chargeTimer <= 0)
+            {
+                Attack();
+                chargeForAttack = false;
+            }
+            if(chargeTimer > 0)
+            {
+                chargeTimer -= Time.deltaTime;
+            }
         }
     }
 
@@ -99,6 +123,37 @@ public class Boss : MonoBehaviour
 
     private void SetAnim()
     {
+        Vector3 direction = p.transform.position - transform.position;
+        //Debug.Log(direction);
 
+        int spriteDirection = 1;
+        bool lunging = false;
+        bool cards = false;
+
+        if (direction.x < animRangeX && direction.x > -animRangeX)
+        {
+            if (direction.y > 0)
+                spriteDirection = 3;
+            else if (direction.y < 0)
+                spriteDirection = 4;
+        }
+        else if (direction.x > 0)
+            spriteDirection = 1;
+        else if (direction.x < 0)
+            spriteDirection = 2;
+
+        //Debug.Log(spriteDirection);
+        if (currentAttack != null && !currentAttack.attackComplete)
+        {
+            if (currentAttack.attackType == "Dash")
+                lunging = true;
+            else if (currentAttack.attackType == "Cards")
+                cards = true;
+        }
+
+        anim.SetBool("Charging", chargeForAttack);
+        anim.SetBool("Lunging", lunging);
+        anim.SetBool("Cards", cards);
+        anim.SetInteger("Direction", spriteDirection);
     }
 }
