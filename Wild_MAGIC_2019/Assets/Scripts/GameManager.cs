@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
                     cardManager.cardList.RemoveAt(0);
                 }
                 cutsceneActive = true;
+                first = true;
                 SceneManager.LoadScene(7);
             }
         }
@@ -91,8 +92,8 @@ public class GameManager : MonoBehaviour
             }
             else if (cutsceneActive)
             {
-                cutsceneActive = false;
-                first = true;
+               cutsceneActive = false;
+               first = true;
                EndCutscene();
             }
         }
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
     public void FinalDoor()
     {
         cutsceneActive = true;
+        first = true;
         SceneManager.LoadScene(8);
     }
 
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndCutscene()
     {
+        first = true;
         SceneManager.LoadScene(3);
     }
 }
