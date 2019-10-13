@@ -33,7 +33,10 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
+        {
+            rb.velocity = Vector3.zero;
             rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+        }
     }
     public Vector3 GetDirection()
     {
