@@ -17,38 +17,43 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        angle = Mathf.Tan((player.transform.position.x - transform.position.x) / (player.transform.position.y - transform.position.y));
-        if((22.5f > angle && angle > 0f) || (360 > angle && angle > 337.5))
-        {
-            direction = new Vector3(-1, 0, 0);
-        }
-        else if ((22.5f > angle && angle > 0f) || (360 > angle && angle > 337.5))
-        {
-            direction = new Vector3(-1, -1, 0);
-        }
-        else if ((67.5 > angle && angle > 22.5f))
-        {
-            direction = new Vector3(0, -1, 0);
-        }
-        else if ((112.5f > angle && angle > 67.5f))
-        {
-            direction = new Vector3(1, -1, 0);
-        }
-        else if ((157.5 > angle && angle > 112.5f))
+        Vector3 toTarget = player.transform.position - transform.position;
+        toTarget = toTarget.normalized;
+        angle = Mathf.Rad2Deg*(Mathf.Atan2(toTarget.y, toTarget.x));
+
+        Debug.Log(angle);
+
+        if((22.5f >= angle && angle > 0) || (angle < 0 && -22.5f <= angle))
         {
             direction = new Vector3(1, 0, 0);
         }
-        else if ((192.5 > angle && angle > 157.5f))
+        else if ((67.5 >= angle && angle > 22.5f))
         {
             direction = new Vector3(1, 1, 0);
         }
-        else if ((247.5f > angle && angle > 192.5f))
+        else if ((112.5f >= angle && angle > 67.5f))
         {
             direction = new Vector3(0, 1, 0);
         }
-        else if ((292.5 > angle && angle > 247.5f))
+        else if ((157.5 >= angle && angle > 112.5f))
         {
             direction = new Vector3(-1, 1, 0);
+        }
+        else if ((180 >= angle && angle > 157.5f) || (-180 <= angle && angle < -157.5f))
+        {
+            direction = new Vector3(-1, 0, 0);
+        }
+        else if ((-157.5f <= angle && angle < -112.5f))
+        {
+            direction = new Vector3(-1, -1, 0);
+        }
+        else if ((-112.5f <= angle && angle < -67.5f))
+        {
+            direction = new Vector3(0, -1, 0);
+        }
+        else if ((-67.5 <= angle && angle < -22.5f))
+        {
+            direction = new Vector3(1, -1, 0);
         }
         if (direction.magnitude > 1)
             direction = direction.normalized;
