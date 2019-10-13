@@ -21,11 +21,14 @@ public class Boss : MonoBehaviour
     private Animator anim;
     private float animRangeX = .5f;
 
+    public GameManager gameManager;
+
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -119,6 +122,7 @@ public class Boss : MonoBehaviour
     void Die()
     {
         Destroy(this.gameObject);
+        gameManager.Win();
     }
 
     private void SetAnim()

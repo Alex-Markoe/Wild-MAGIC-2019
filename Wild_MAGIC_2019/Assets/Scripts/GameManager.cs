@@ -81,11 +81,16 @@ public class GameManager : MonoBehaviour
                 first = true;
                 SceneManager.LoadScene(4);
             }
-            /*if(Win condition)
-             * {
-             * SceneManager.LoadScene(3);
-             * }
-             * */
         }
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void FinalDoor()
+    {
+        SceneManager.LoadScene(5);
     }
 }
