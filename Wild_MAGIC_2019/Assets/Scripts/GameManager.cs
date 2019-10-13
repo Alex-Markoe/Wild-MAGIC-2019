@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour
     public Player player;
     public TarotCardManager cardManager;
     public EnemyManager enemyManager;
+    public float sunLight = 2.75f;
+    public float deathLight = 2f;
+    public float moonLight = 1.5f;
+    public float currentLight;
 
     private int sceneIndex;
     private static CardType playerChosen;
     // Start is called before the first frame update
     void Start()
     {
+        Object.DontDestroyOnLoad(this);
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
         if(sceneIndex == 1)
         {
@@ -24,7 +29,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(playerChosen);
             if (playerChosen == CardType.Sun)
             {
-                player.SetLightRadius(2.5f);
+                currentLight = sunLight;
                 for (int i = 0; i < enemyManager.enemies.Length; i++)
                 {
                     enemyManager.enemies[i].movementSpeed *= 5f;
@@ -34,13 +39,15 @@ public class GameManager : MonoBehaviour
             {
                 player.hp = 1;
                 player.attackDamage *= 2;
+                currentLight = deathLight;
             }
             else if(playerChosen == CardType.Moon)
             {
-                player.SetLightRadius(1.5f);
+                currentLight = moonLight;
                 player.dashing = true;
 
             }
+            player.SetLightRadius(currentLight);
 
         }
     }
@@ -48,7 +55,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(sceneIndex == 1)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             playerChosen = cardManager.CardChosen();
             if (playerChosen != CardType.None)
@@ -62,7 +69,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(2);
             }
         }
-        if(sceneIndex == 2)
+        if(SceneManager.GetActiveScene().buildIndex == 2)
         {
             if (player.hp <= 0)
             {

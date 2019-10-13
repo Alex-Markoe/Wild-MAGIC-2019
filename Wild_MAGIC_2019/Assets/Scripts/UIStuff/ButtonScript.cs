@@ -7,30 +7,29 @@ public class ButtonScript : MonoBehaviour
 {
     public int indexOfTransition;
 
-    //public bool quitGame;
+    private BoxCollider2D collider;
+    private Camera myCamera;
+    private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        //indexOfTransition = SceneManager.GetActiveScene().buildIndex;
-        //if(indexOfTransition > SceneManager.sceneCount - 1)
-        //{
-        //    indexOfTransition = 0;
-        //}        
-        //else if(quitGame)
-        //{
-        //    indexOfTransition = -1;
-        //}
-        //else
-        //{
-        //    indexOfTransition++;
-        //}
+        collider = GetComponent<BoxCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        myCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isHovered())
+        {
+            sprite.color = Color.red;
+        }
+        else
+        {
+            sprite.color = Color.white;
+        }
     }
 
     private void OnMouseDown()
@@ -44,5 +43,16 @@ public class ButtonScript : MonoBehaviour
         {
             SceneManager.LoadScene(indexOfTransition);
         }
+    }
+
+    private bool isHovered()
+    {
+        Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
+        if ((mousePosition.x > collider.bounds.min.x && mousePosition.x < collider.bounds.max.x) &&
+            (mousePosition.y > collider.bounds.min.y && mousePosition.y < collider.bounds.max.y))
+        {
+            return true;
+        }
+        return false;
     }
 }
