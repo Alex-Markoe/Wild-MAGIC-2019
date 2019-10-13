@@ -133,9 +133,9 @@ public class Boss : MonoBehaviour
         if (direction.x < animRangeX && direction.x > -animRangeX)
         {
             if (direction.y > 0)
-                spriteDirection = 3;
-            else if (direction.y < 0)
                 spriteDirection = 4;
+            else if (direction.y < 0)
+                spriteDirection = 3;
         }
         else if (direction.x > 0)
             spriteDirection = 1;
