@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public float cutsceneTimer;
     public float cutsceneMax = 3f;
     public bool cutsceneActive;
+    public bool cutsceneEndActive;
+    public bool cutsceneFirst;
 
     private int sceneIndex;
     private static CardType playerChosen;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         Object.DontDestroyOnLoad(this);
         source = GetComponent<AudioSource>();
         cutsceneActive = true;
+        cutsceneEndActive = true;
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
                 }
                 cutsceneActive = true;
                 first = true;
+                cutsceneFirst = true;
                 SceneManager.LoadScene(7);
             }
         }
@@ -81,18 +85,18 @@ public class GameManager : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().buildIndex == 8)
         {
-            if (first)
+            if (cutsceneFirst)
             {
                 cutsceneTimer = cutsceneMax;
-                first = false;
+                cutsceneFirst = false;
             }
             if (cutsceneTimer > 0)
             {
                 cutsceneTimer -= Time.deltaTime;
             }
-            else if (cutsceneActive)
+            else if (cutsceneEndActive)
             {
-               cutsceneActive = false;
+               cutsceneEndActive = false;
                first = true;
                EndCutscene();
             }
@@ -102,6 +106,26 @@ public class GameManager : MonoBehaviour
         {
             //source.Stop();
             source.clip = bossSong;
+            if (playerChosen == CardType.Sun)
+            {
+                currentLight = sunLight;
+                for (int i = 0; i < enemyManager.enemies.Length; i++)
+                {
+                    enemyManager.enemies[i].movementSpeed *= 5f;
+                }
+            }
+            else if (playerChosen == CardType.Death)
+            {
+                player.hp = 1;
+                player.attackDamage *= 2;
+                currentLight = deathLight;
+            }
+            else if (playerChosen == CardType.Moon)
+            {
+                currentLight = moonLight;
+                player.dashing = true;
+
+            }
         }
         else
         {
@@ -158,19 +182,15 @@ public class GameManager : MonoBehaviour
 
     public void FinalDoor()
     {
-        cutsceneActive = true;
-        first = true;
         SceneManager.LoadScene(8);
     }
 
     public void StartCutscene()
     {
-        first = true;
         SceneManager.LoadScene(2);
     }
     public void EndCutscene()
     {
-        first = true;
         SceneManager.LoadScene(3);
     }
 }
