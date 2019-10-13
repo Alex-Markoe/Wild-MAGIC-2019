@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
         }
         #endregion
 
-        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, new Vector3(x, y, 0)), transform);
+        createdSword = Instantiate(swordObject, transform.position, Quaternion.FromToRotation(transform.right, -new Vector3(x, y, 0)), transform);
 
         float arcAccuracy = 0.1f;
         float arcSize = 60;
