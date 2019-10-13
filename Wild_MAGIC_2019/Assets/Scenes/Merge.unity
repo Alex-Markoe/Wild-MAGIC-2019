@@ -377,6 +377,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: -37, y: -4, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: -10, y: -4, z: 0}
     second:
       m_TileIndex: 1
@@ -1753,14 +1762,14 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 953765d534ee7f1438fe3e337cc98ced, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 60
+  - m_RefCount: 61
     m_Data: {fileID: 11400000, guid: e9bd329dc7b5e934aa4e10f322cf572a, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 60
+  - m_RefCount: 61
     m_Data: {fileID: -1387380265973276101, guid: 00d25801e59f6aa418e117fe93447ea6,
       type: 3}
   - m_RefCount: 0
@@ -1771,7 +1780,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 171
+  - m_RefCount: 172
     m_Data:
       e00: 1
       e01: 0
@@ -1790,7 +1799,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 171
+  - m_RefCount: 172
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 1.5522193e-18, g: 1.5522193e-18, b: 1.5522193e-18, a: 1.5522193e-18}
@@ -1800,8 +1809,8 @@ Tilemap:
     m_Data: {r: 1.5975306e-18, g: 1.5975306e-18, b: 1.5975306e-18, a: 1.5975306e-18}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -11, y: -6, z: 0}
-  m_Size: {x: 22, y: 11, z: 1}
+  m_Origin: {x: -37, y: -6, z: 0}
+  m_Size: {x: 48, y: 11, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -4048,7 +4057,7 @@ PrefabInstance:
     - target: {fileID: 4413059963424685606, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
