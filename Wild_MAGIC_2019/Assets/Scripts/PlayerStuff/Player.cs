@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public Sprite heart;
 
     private float swordTimer;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +39,15 @@ public class Player : MonoBehaviour
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
+        {
             GameObject.Destroy(createdSword);
+            pMove.attacking = false;
+        }
 
         if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
+            pMove.attacking = true;
         }
 
         if(hp <= 0)
