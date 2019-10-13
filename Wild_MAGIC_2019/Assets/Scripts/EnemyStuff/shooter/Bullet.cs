@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
 
         Debug.Log(angle);
 
-        if((22.5f >= angle && angle > 0) || (angle < 0 && -22.5f <= angle))
+        if((22.5f >= angle && angle >= 0) || (angle < 0 && -22.5f <= angle))
         {
             direction = new Vector3(1, 0, 0);
         }
