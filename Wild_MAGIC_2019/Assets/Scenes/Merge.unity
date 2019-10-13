@@ -3078,21 +3078,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
-        type: 3}
-      propertyPath: swordObject
-      value: 
-      objectReference: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
-        type: 3}
-    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
-        type: 3}
-      propertyPath: swordLength
-      value: 1.6
-      objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685606, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413059963424685606, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
@@ -3147,14 +3141,6 @@ PrefabInstance:
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2097364966, guid: 7c52580f8fb2c3947ae292cb37e684bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2097364968, guid: 7c52580f8fb2c3947ae292cb37e684bf, type: 3}
-      propertyPath: m_MaskInteraction
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
