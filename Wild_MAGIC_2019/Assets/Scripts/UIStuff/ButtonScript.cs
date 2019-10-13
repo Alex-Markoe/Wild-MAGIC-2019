@@ -7,18 +7,24 @@ public class ButtonScript : MonoBehaviour
 {
     public int indexOfTransition;
 
+    //public bool quitGame;
+
     // Start is called before the first frame update
     void Start()
     {
-        indexOfTransition = SceneManager.GetActiveScene().buildIndex;
-        if(indexOfTransition > SceneManager.sceneCount - 1)
-        {
-            indexOfTransition = 0;
-        }
-        else
-        {
-            indexOfTransition++;
-        }
+        //indexOfTransition = SceneManager.GetActiveScene().buildIndex;
+        //if(indexOfTransition > SceneManager.sceneCount - 1)
+        //{
+        //    indexOfTransition = 0;
+        //}        
+        //else if(quitGame)
+        //{
+        //    indexOfTransition = -1;
+        //}
+        //else
+        //{
+        //    indexOfTransition++;
+        //}
     }
 
     // Update is called once per frame
@@ -29,10 +35,14 @@ public class ButtonScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(indexOfTransition == -1)
+        if (indexOfTransition == -1)
         {
+            Debug.Log("Closed");
             Application.Quit();
         }
-        SceneManager.LoadScene(indexOfTransition);
+        else
+        {
+            SceneManager.LoadScene(indexOfTransition);
+        }
     }
 }
