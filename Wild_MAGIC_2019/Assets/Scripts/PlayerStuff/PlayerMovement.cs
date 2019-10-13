@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             running = true;
         }
-        if (attacking && !player.dashing)
+        if (attacking && !dashing)
         {
             running = false;
         }

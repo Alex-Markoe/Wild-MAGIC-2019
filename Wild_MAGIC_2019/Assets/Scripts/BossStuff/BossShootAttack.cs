@@ -13,13 +13,13 @@ public class BossShootAttack : BossAttack
 
         for (int i = 0; i < 8; i++)
         {
-            float angle = (((8 - i) / 8) * 360f) * Mathf.Deg2Rad;
+            float angle = (((8f - i) / 8f) * 360f) * Mathf.Deg2Rad;
 
             GameObject bBullet = Instantiate(bossBullet, transform.position, Quaternion.FromToRotation(Vector3.right, new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0)));
-
-            bBullet.GetComponent<Rigidbody>().velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0).normalized * bulletSpeed;
+            bBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0).normalized * bulletSpeed;
         }
-
         base.DoAttack();
+
+        attackComplete = true;
     }
 }
