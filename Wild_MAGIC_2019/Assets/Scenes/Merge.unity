@@ -3083,17 +3083,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
-        type: 3}
-      propertyPath: swordObject
-      value: 
-      objectReference: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
-        type: 3}
-    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
-        type: 3}
-      propertyPath: swordLength
-      value: 1.6
-      objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3147,14 +3136,6 @@ PrefabInstance:
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2097364966, guid: 7c52580f8fb2c3947ae292cb37e684bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2097364968, guid: 7c52580f8fb2c3947ae292cb37e684bf, type: 3}
-      propertyPath: m_MaskInteraction
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9256,6 +9237,7 @@ GameObject:
   - component: {fileID: 821788761}
   - component: {fileID: 821788760}
   - component: {fileID: 821788759}
+  - component: {fileID: 821788762}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9328,6 +9310,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821788762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821788758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c0aac813eca7a4cb8085945539434d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxShakeTime: 0.1
+  shakeSize: 0.25
 --- !u!1001 &823240257
 PrefabInstance:
   m_ObjectHideFlags: 0

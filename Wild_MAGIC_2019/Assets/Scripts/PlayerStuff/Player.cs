@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public bool dashing = false;
     public float lightRadius = 2;
     public Transform lightMask;
+    public float flickerSpeed = 0.25f;
+    private float flicker;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -53,10 +55,20 @@ public class Player : MonoBehaviour
             pMove.attacking = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
             pMove.attacking = true;
+        }
+
+        if (flicker <= 0)
+        {
+            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(Random.Range(lightRadius, lightRadius + 0.2f), Random.Range(lightRadius, lightRadius + 0.2f), 0), 10f * Time.deltaTime);
+            flicker = flickerSpeed;
+        }
+        else
+        {
+            flicker -= Time.deltaTime;
         }
     }
 
@@ -165,6 +177,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amt)
     {
         hp -= amt;
+
+        Camera.main.GetComponent<ScreenShake>().Shake();
     }
 
     public Vector3 GetPosition()
