@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum CardType
 {
-    WheelOfFortune,
-    Judgement,
-    Devil,
+    Sun,
+    Death,
+    Moon,
     None
 }
 public class TarotCard : MonoBehaviour
@@ -34,7 +34,7 @@ public class TarotCard : MonoBehaviour
     {
         if(isHovered())
         {
-            imagesText.transform.position = new Vector3(collider.bounds.min.x - 2.25f, collider.bounds.center.y, 1);
+            imagesText.transform.position = new Vector3(collider.bounds.center.x, collider.bounds.center.y, 1);
         }
         else
         {
@@ -51,11 +51,11 @@ public class TarotCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (type == CardType.Devil)
+        if (type == CardType.Sun)
         {
             Debug.Log("Your greed for power has reduced your light!");
         }
-        else if(type == CardType.Judgement)
+        else if(type == CardType.Death)
         {
             Debug.Log("It's time for your rebirth with some new found power!");
         }

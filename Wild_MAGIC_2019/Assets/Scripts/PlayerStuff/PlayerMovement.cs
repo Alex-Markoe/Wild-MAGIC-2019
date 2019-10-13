@@ -9,7 +9,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
-    private Vector3 direction;
+    public Vector3 direction;
+    public Player player;
+    private float dashSpeed = .005f;
+    public float dashTimer;
+    private float dashMax = .125f;
+    public bool dashing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +33,18 @@ public class PlayerMovement : MonoBehaviour
             direction = direction.normalized;
 
         SetAnim();
+
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+            player.Attack();
+        }
+        else if (dashing)
+        {
+            dashTimer = dashMax;
+            dashing = false;
+            dashSpeed = .2f;
+        }
     }
 
     private void FixedUpdate()
@@ -98,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             running = true;
         }
-        if (attacking)
+        if (attacking && !player.dashing)
         {
             running = false;
         }
@@ -106,5 +123,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Running", running);
         anim.SetBool("Attacking", attacking);
         anim.SetInteger("Direction", spriteDirection);
+    }
+
+    public void Dash()
+    {
+        rb.MovePosition(transform.position + (direction.normalized * dashSpeed));
+        dashSpeed *= 1.2f;
     }
 }

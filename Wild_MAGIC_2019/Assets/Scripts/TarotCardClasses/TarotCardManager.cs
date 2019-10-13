@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class TarotCardManager : MonoBehaviour
 {
     public List<TarotCard> cardList;
-    public TarotCard judgementCardPrefab;
-    public TarotCard devilCardPrefab;
-    public TarotCard WheelCardPrefab;
+    public TarotCard deathCardPrefab;
+    public TarotCard sunCardPrefab;
+    public TarotCard moonPrefab;
 
     public Camera myCamera;
     private float totalCamWidth;
@@ -22,9 +22,9 @@ public class TarotCardManager : MonoBehaviour
 
         cardList = new List<TarotCard>(3);
 
-        cardList.Add(CreateCard(CardType.Devil, new Vector3(.5f * -totalCamWidth, (1 / 6) * -totalCamHeight, 0)));
-        cardList.Add(CreateCard(CardType.Judgement, new Vector3(0, (1 / 6) * -totalCamHeight, 0)));
-        cardList.Add(CreateCard(CardType.WheelOfFortune, new Vector3(.5f * totalCamWidth, (1 / 6) * -totalCamHeight, 0)));
+        cardList.Add(CreateCard(CardType.Sun, new Vector3(.5f * -totalCamWidth, (1 / 6) * -totalCamHeight, 0)));
+        cardList.Add(CreateCard(CardType.Death, new Vector3(0, (1 / 6) * -totalCamHeight, 0)));
+        cardList.Add(CreateCard(CardType.Moon, new Vector3(.5f * totalCamWidth, (1 / 6) * -totalCamHeight, 0)));
     }
 
     // Update is called once per frame
@@ -37,17 +37,17 @@ public class TarotCardManager : MonoBehaviour
     {
         TarotCard card = null;
         Debug.Log(position);
-        if (type == CardType.Devil)
+        if (type == CardType.Sun)
         {
-            card = Instantiate<TarotCard>(devilCardPrefab);
+            card = Instantiate<TarotCard>(sunCardPrefab);
         }
-        else if(type == CardType.Judgement)
+        else if(type == CardType.Death)
         {
-            card = Instantiate<TarotCard>(judgementCardPrefab);
+            card = Instantiate<TarotCard>(deathCardPrefab);
         }
-        else if(type == CardType.WheelOfFortune)
+        else if(type == CardType.Moon)
         {
-            card = Instantiate<TarotCard>(WheelCardPrefab);
+            card = Instantiate<TarotCard>(moonPrefab);
         }
         card.position = position;
         card.transform.position = position;

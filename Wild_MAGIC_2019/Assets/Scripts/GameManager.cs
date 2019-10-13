@@ -22,23 +22,24 @@ public class GameManager : MonoBehaviour
         if(sceneIndex == 2)
         {
             Debug.Log(playerChosen);
-            if (playerChosen == CardType.Devil)
+            if (playerChosen == CardType.Sun)
             {
-                //Change the lights radius
+                player.SetLightRadius(3f);
                 for (int i = 0; i < enemyManager.enemies.Length; i++)
                 {
                     enemyManager.enemies[i].movementSpeed *= 5f;
                 }
             }
-            else if(playerChosen == CardType.Judgement)
+            else if(playerChosen == CardType.Death)
             {
                 player.hp = 1;
                 player.attackDamage *= 2;
             }
-            else if(playerChosen == CardType.WheelOfFortune)
+            else if(playerChosen == CardType.Moon)
             {
-                //Will Change players radius to shrink and implement dash attack soon
+                player.SetLightRadius(1.5f);
                 player.dashing = true;
+
             }
 
         }
@@ -58,15 +59,20 @@ public class GameManager : MonoBehaviour
                     Destroy(cardManager.cardList[0]);
                     cardManager.cardList.RemoveAt(0);
                 }
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(2);
             }
         }
         if(sceneIndex == 2)
         {
             if (player.hp <= 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(4);
             }
+            /*if(Win condition)
+             * {
+             * SceneManager.LoadScene(3);
+             * }
+             * */
         }
     }
 }
