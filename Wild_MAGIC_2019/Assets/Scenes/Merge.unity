@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 14300718}
   m_Layer: 0
   m_Name: RoomManager
-  m_TagString: Untagged
+  m_TagString: RoomManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,6 +2053,7 @@ MonoBehaviour:
   - {fileID: 1278219600}
   - {fileID: 112449139}
   cleared: 0
+  firstClear: 0
   center: {x: 65, y: 0, z: -10}
 --- !u!4 &121465620
 Transform:
@@ -4133,6 +4134,7 @@ MonoBehaviour:
   - {fileID: 1200146094}
   - {fileID: 1628102183}
   cleared: 0
+  firstClear: 0
   center: {x: 0, y: 20, z: -10}
 --- !u!4 &287599957
 Transform:
@@ -5677,7 +5679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582816182
 GameObject:
@@ -11230,6 +11232,7 @@ MonoBehaviour:
   doors:
   - {fileID: 1341376215}
   cleared: 0
+  firstClear: 0
   center: {x: 98, y: 0, z: -10}
 --- !u!4 &780009801
 Transform:
@@ -18564,6 +18567,7 @@ MonoBehaviour:
   doors:
   - {fileID: 128492433}
   cleared: 0
+  firstClear: 0
   center: {x: 33, y: 40, z: -10}
 --- !u!4 &1470934059
 Transform:
@@ -18631,6 +18635,7 @@ MonoBehaviour:
   doors:
   - {fileID: 773620833}
   cleared: 1
+  firstClear: 1
   center: {x: 0, y: 0, z: -10}
 --- !u!1 &1490969218
 GameObject:
@@ -22119,6 +22124,7 @@ MonoBehaviour:
   - {fileID: 1006571024}
   - {fileID: 1443519900}
   cleared: 0
+  firstClear: 0
   center: {x: 33, y: 0, z: -10}
 --- !u!4 &1849648369
 Transform:
@@ -22286,7 +22292,7 @@ GameObject:
   - component: {fileID: 1934723377}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: EnemyManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22536,6 +22542,7 @@ MonoBehaviour:
   - {fileID: 1862787775}
   - {fileID: 356142342}
   cleared: 0
+  firstClear: 0
   center: {x: 33, y: 20, z: -10}
 --- !u!4 &1987297997
 Transform:

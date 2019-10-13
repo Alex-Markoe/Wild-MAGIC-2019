@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] doors;
     public bool cleared;
+    public bool firstClear;
     public Vector3 center;
 
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class Room : MonoBehaviour
         }
 
         cleared = false;
+        firstClear = false;
     }
 
     // Update is called once per frame
@@ -44,6 +46,7 @@ public class Room : MonoBehaviour
             if(enemy != null)
             {
                 cleared = false;
+                firstClear = false;
             }
         }
 
