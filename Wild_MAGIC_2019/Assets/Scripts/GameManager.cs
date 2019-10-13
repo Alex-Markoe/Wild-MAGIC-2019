@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     private static CardType playerChosen;
 
     private AudioSource source;
+
+    public AudioClip bossSong;
+    public AudioClip regularSong;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,17 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(2);
             }
         }
+
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            //source.Stop();
+            source.clip = bossSong;
+        }
+        else
+        {
+            //source.Stop();
+            source.clip = regularSong;
+        }
         if(SceneManager.GetActiveScene().buildIndex == 2)
         {
             if(first)
@@ -86,18 +100,18 @@ public class GameManager : MonoBehaviour
             if (player.hp <= 0)
             {
                 first = true;
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(5);
             }
         }
     }
 
     public void Win()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void FinalDoor()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(3);
     }
 }
