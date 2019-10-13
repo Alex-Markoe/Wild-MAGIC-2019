@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             pMove.attacking = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0 && (!lightShrink || roomManager.currentRoom.firstClear))
         {
             Attack();
             pMove.attacking = true;
