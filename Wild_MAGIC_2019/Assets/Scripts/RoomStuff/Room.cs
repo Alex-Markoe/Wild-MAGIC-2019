@@ -19,10 +19,12 @@ public class Room : MonoBehaviour
     public void EnableRoom()
     {
         player.enabled = true;
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             if (enemy != null)
+            {
                 enemy.SetActive(true);
+            }
         }
 
         foreach (GameObject door in doors)
