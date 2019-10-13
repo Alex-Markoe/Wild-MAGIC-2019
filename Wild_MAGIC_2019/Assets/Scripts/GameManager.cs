@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Player playerPrefab;
     public Player player;
     public TarotCardManager cardManager;
     public EnemyManager enemyManager;
@@ -16,12 +15,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         sceneIndex = SceneManager.GetActiveScene().buildIndex;
-
+        if(sceneIndex == 1)
+        {
+            playerChosen = CardType.None;
+        }
         if(sceneIndex == 2)
         {
-            player = Instantiate<Player>(playerPrefab);
-
-            if(playerChosen == CardType.Devil)
+            Debug.Log(playerChosen);
+            if (playerChosen == CardType.Devil)
             {
                 //Change the lights radius
                 for (int i = 0; i < enemyManager.enemies.Length; i++)

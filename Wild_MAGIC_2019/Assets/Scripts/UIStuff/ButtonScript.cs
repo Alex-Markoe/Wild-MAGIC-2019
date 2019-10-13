@@ -11,7 +11,7 @@ public class ButtonScript : MonoBehaviour
     void Start()
     {
         indexOfTransition = SceneManager.GetActiveScene().buildIndex;
-        if(indexOfTransition == 2)
+        if(indexOfTransition > SceneManager.sceneCount - 1)
         {
             indexOfTransition = 0;
         }
