@@ -7,7 +7,7 @@ public class ButtonScript : MonoBehaviour
 {
     public int indexOfTransition;
 
-    private BoxCollider2D collider;
+    private BoxCollider2D col;
     private Camera myCamera;
     private SpriteRenderer sprite;
 
@@ -16,7 +16,7 @@ public class ButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        col = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         myCamera = Camera.main;
 
@@ -54,8 +54,8 @@ public class ButtonScript : MonoBehaviour
     private bool isHovered()
     {
         Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        if ((mousePosition.x > collider.bounds.min.x && mousePosition.x < collider.bounds.max.x) &&
-            (mousePosition.y > collider.bounds.min.y && mousePosition.y < collider.bounds.max.y))
+        if ((mousePosition.x > col.bounds.min.x && mousePosition.x < col.bounds.max.x) &&
+            (mousePosition.y > col.bounds.min.y && mousePosition.y < col.bounds.max.y))
         {
             return true;
         }
