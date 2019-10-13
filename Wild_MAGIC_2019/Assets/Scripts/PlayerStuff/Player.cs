@@ -36,11 +36,15 @@ public class Player : MonoBehaviour
         pMove.movementSpeed = movementSpeed;
     }
 
+    void SetLightRadius(float amt)
+    {
+        lightRadius = amt;
+        lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
-
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
