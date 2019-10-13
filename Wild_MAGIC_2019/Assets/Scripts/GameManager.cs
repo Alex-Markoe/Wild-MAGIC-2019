@@ -134,6 +134,10 @@ public class GameManager : MonoBehaviour
                 first = false;
                 player.SetLightRadius(currentLight);
             }
+            
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
+        {
             if (player.hp <= 0)
             {
                 first = true;
