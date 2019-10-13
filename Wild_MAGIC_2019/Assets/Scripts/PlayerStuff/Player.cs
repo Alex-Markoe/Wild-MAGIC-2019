@@ -261,6 +261,8 @@ public class Player : MonoBehaviour
 
                     //Instantiate(Resources.Load("HitEffect"), transform.position + direction * swordLength, Quaternion.identity);
 
+                    Camera.main.GetComponent<ScreenShake>().Shake();
+
                     i = 60f;
                 }
             }
