@@ -65,7 +65,8 @@ public class Player : MonoBehaviour
 
         if (flicker <= 0)
         {
-            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(Random.Range(lightRadius, lightRadius + 0.2f), Random.Range(lightRadius, lightRadius + 0.2f), 0), 10f * Time.deltaTime);
+            float flickerScale = Random.Range(lightRadius, lightRadius + 0.2f);
+            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(flickerScale, flickerScale), 10f * Time.deltaTime);
             flicker = flickerSpeed;
         }
         else
