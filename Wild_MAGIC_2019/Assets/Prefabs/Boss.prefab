@@ -177,9 +177,10 @@ MonoBehaviour:
   attacks:
   - {fileID: 6988966100166806838}
   - {fileID: 6988966100166806836}
-  actionTimer: 0.5
-  hp: 2000
+  actionTimer: 0.75
+  hp: 20
   movementSpeed: 2
+  chargeTime: 1
 --- !u!114 &6988966100166806836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +198,6 @@ MonoBehaviour:
   attackType: 
   dashSpeed: 3
   attackRange: 2
-  chargeTime: 0.5
 --- !u!114 &6988966100166806838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +213,8 @@ MonoBehaviour:
   attackDamage: 1
   attackComplete: 0
   attackType: 
-  bulletSpeed: 5
+  bulletSpeed: 10
+  cardCount: 8
 --- !u!1 &6988966101619844991
 GameObject:
   m_ObjectHideFlags: 0
