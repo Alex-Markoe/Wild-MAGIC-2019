@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     source.clip = clip;
                     source.Play();
-                    Debug.Log("Running");
                 }
             }
         }

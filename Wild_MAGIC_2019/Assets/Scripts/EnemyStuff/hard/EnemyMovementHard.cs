@@ -7,8 +7,6 @@ public class EnemyMovementHard : EnemyMovement
     public float attackTimer;
     public float attackTimerInterval = 2f;
 
-    private const float angleAnimMax = .4f;
-
     private void Start()
     {
         rng = Random.Range(1, 9);

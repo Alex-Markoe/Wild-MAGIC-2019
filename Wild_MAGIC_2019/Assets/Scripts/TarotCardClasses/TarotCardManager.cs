@@ -36,7 +36,6 @@ public class TarotCardManager : MonoBehaviour
     private TarotCard CreateCard(CardType type, Vector3 position)
     {
         TarotCard card = null;
-        Debug.Log(position);
         if (type == CardType.Sun)
         {
             card = Instantiate<TarotCard>(sunCardPrefab);
