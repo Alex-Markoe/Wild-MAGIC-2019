@@ -120,6 +120,11 @@ public class Boss : MonoBehaviour
         }
 
         SetAnim();
+
+        if(Vector2.Distance(transform.position, p.transform.position) < 1f)
+        {
+            p.TakeDamage(1);
+        }
     }
 
     void Attack()
