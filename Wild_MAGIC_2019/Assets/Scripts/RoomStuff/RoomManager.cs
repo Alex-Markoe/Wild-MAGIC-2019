@@ -33,5 +33,14 @@ public class RoomManager : MonoBehaviour
         rooms[roomIndex].EnableRoom();
         currentRoom = rooms[roomIndex];
         p.transform.position = pPos;
+        if(!currentRoom.firstClear)
+        {
+            p.GetComponent<PlayerMovement>().movingTimer = 0f;
+            p.GetComponent<PlayerMovement>().moving = false;
+            foreach(GameObject enemy in currentRoom.enemies)
+            {
+                enemy.GetComponent<EnemyMovement>();
+            }
+        }
     }
 }
