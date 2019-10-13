@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             dashing = false;
             dashSpeed = .2f;
         }
-
+        source = GetComponent<AudioSource>();
         SetAnim();
     }
 
