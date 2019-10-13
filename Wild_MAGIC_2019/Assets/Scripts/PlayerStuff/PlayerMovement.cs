@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
         previousHorizontalAxis = 0;
         previousVerticalAxis = 0;
+
+        
     }
 
     // Update is called once per frame

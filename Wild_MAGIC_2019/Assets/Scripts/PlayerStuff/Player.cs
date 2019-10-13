@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
         lightShrink = true;
         lightTimer = lightMax;
 
+        source = GetComponent<AudioSource>();
+
         pMove.clip = audioClips[0];
         pMove.source = source;
     }
