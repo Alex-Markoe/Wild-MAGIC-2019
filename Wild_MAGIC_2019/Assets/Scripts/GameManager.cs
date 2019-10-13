@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
             if(first)
             {
                 player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                player.SetLightRadius(currentLight);
                 enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
                 Debug.Log(playerChosen);
                 if (playerChosen == CardType.Sun)
@@ -75,6 +74,7 @@ public class GameManager : MonoBehaviour
 
                 }
                 first = false;
+                player.SetLightRadius(currentLight);
             }
             if (player.hp <= 0)
             {
