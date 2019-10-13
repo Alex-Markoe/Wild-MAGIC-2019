@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
             pMove.attacking = false;
         }
 
-        if(Input.GetKey(KeyCode.Space) && swordTimer <= 0)
+        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
         {
             Attack();
             pMove.attacking = true;
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
 
             Vector3 rot = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
 
-            //Debug.DrawRay(transform.position, rot.normalized * swordLength);
+            Debug.DrawRay(transform.position, rot.normalized * swordLength, Color.red / 4);
 
             RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
