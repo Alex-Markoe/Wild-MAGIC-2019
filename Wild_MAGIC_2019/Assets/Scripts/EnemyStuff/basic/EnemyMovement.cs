@@ -102,4 +102,55 @@ public class EnemyMovement : MonoBehaviour
         return direction;
     }
 
+    public virtual void SetAnim()
+    {
+        int x = 0;
+        int y = 0;
+        int spriteDirection = 1;
+
+        if (direction.x < 0)
+        {
+            x = -1;
+        }
+        if (direction.x > 0)
+        {
+            x = 1;
+        }
+
+        if (direction.y < 0)
+        {
+            y = -1;
+        }
+        if (direction.y > 0)
+        {
+            y = 1;
+        }
+
+        if (x > 0)
+        {
+            if (y > 0)
+                spriteDirection = 7;
+            else if (y < 0)
+                spriteDirection = 5;
+            else
+                spriteDirection = 1;
+        }
+        else if (x < 0)
+        {
+            if (y > 0)
+                spriteDirection = 8;
+            else if (y < 0)
+                spriteDirection = 6;
+            else
+                spriteDirection = 2;
+        }
+        else if (y > 0)
+        {
+            spriteDirection = 4;
+        }
+        else if (y < 0)
+        {
+            spriteDirection = 3;
+        }
+    }
 }

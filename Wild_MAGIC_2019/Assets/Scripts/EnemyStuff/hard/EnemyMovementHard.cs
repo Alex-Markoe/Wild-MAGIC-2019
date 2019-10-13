@@ -6,6 +6,14 @@ public class EnemyMovementHard : EnemyMovement
 {
     public float attackTimer;
     public float attackTimerInterval = 2f;
+    public bool attacking;
+
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     public override void Update()
     {
@@ -13,20 +21,79 @@ public class EnemyMovementHard : EnemyMovement
         if(attackTimer>0)
         {
             attackTimer -= Time.deltaTime;
+            attacking = false;
         }
         if(colliding && attackTimer <= 0)
         {
             player.TakeDamage(1);
             attackTimer = attackTimerInterval;
+            attacking = true;
         }
-
+        Move();
+        SetAnim();
     }
+
     //  hard movement
     public override void Move()
     {
         direction = new Vector3(player.GetPosition().x - transform.position.x, player.GetPosition().y - transform.position.y, 0);
         if (direction.magnitude > 1)
             direction = direction.normalized;
+    }
+
+    public override void SetAnim()
+    {
+        int x = 0;
+        int y = 0;
+        int spriteDirection = 1;
+
+        if (direction.x < 0)
+        {
+            x = -1;
+        }
+        if (direction.x > 0)
+        {
+            x = 1;
+        }
+
+        if (direction.y < 0)
+        {
+            y = -1;
+        }
+        if (direction.y > 0)
+        {
+            y = 1;
+        }
+
+        if (x > 0)
+        {
+            if (y > 0)
+                spriteDirection = 7;
+            else if (y < 0)
+                spriteDirection = 5;
+            else
+                spriteDirection = 1;
+        }
+        else if (x < 0)
+        {
+            if (y > 0)
+                spriteDirection = 8;
+            else if (y < 0)
+                spriteDirection = 6;
+            else
+                spriteDirection = 2;
+        }
+        else if (y > 0)
+        {
+            spriteDirection = 4;
+        }
+        else if (y < 0)
+        {
+            spriteDirection = 3;
+        }
+
+        anim.SetInteger("Direction", spriteDirection);
+        anim.SetBool("Attacking", attacking);
     }
 
     //  attacks on collision
