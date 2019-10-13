@@ -13,6 +13,8 @@ public class EnemyMovementShooter : EnemyMovement
         anim = GetComponentInChildren<Animator>();
         attacking = false;
         colliding = false;
+
+        player = FindObjectOfType<Player>();
     }
 
     public override void Update()
@@ -49,8 +51,10 @@ public class EnemyMovementShooter : EnemyMovement
     //  shoots a bullet
     public void Attack()
     {
+
         Vector3 toTarget = player.transform.position - transform.position;
-        float angle = (Mathf.Atan2(toTarget.y, toTarget.x)) * (180/Mathf.PI);
+
+        float angle = (Mathf.Atan2(toTarget.y, toTarget.x)) * Mathf.Rad2Deg;
 
         if ((22.5f >= angle && angle >= 0) || (angle < 0 && -22.5f <= angle))
         {

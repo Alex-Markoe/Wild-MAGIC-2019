@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private float invulFlicker = .1f;
     public Color color;
     public float lightTimer;
-    public float lightMax = 20f;
+    public float lightMax = 15f;
     public bool lightShrink;
     public GameManager gameManager;
     public RoomManager roomManager;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         {
             if (lightTimer > gameManager.currentLight && lightShrink)
             {
-                lightTimer -= Time.deltaTime * 2;
+                lightTimer -= Time.deltaTime * 10;
                 if (lightTimer > gameManager.currentLight)
                 {
                     SetLightRadius(lightTimer);
@@ -259,7 +259,7 @@ public class Player : MonoBehaviour
                     pMove.dashTimer = -1;
                     pMove.dashing = false;
 
-                    Debug.Log("Hit");
+                    //Instantiate(Resources.Load("HitEffect"), transform.position + direction * swordLength, Quaternion.identity);
 
                     i = 60f;
                 }
