@@ -6,6 +6,7 @@ public class BossShootAttack : BossAttack
 {
 
     public float bulletSpeed;
+    public float cardCount = 8;
 
     private void Start()
     {
@@ -16,9 +17,9 @@ public class BossShootAttack : BossAttack
     {
         GameObject bossBullet = (GameObject)Resources.Load("bossBullet");
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < cardCount; i++)
         {
-            float angle = (((8f - i) / 8f) * 360f) * Mathf.Deg2Rad;
+            float angle = (((cardCount - i) / cardCount) * 360f) * Mathf.Deg2Rad;
 
             GameObject bBullet = Instantiate(bossBullet, transform.position, Quaternion.FromToRotation(Vector3.right, new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0)));
             bBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0).normalized * bulletSpeed;
