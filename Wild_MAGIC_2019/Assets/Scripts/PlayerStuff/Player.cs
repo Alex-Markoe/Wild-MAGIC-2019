@@ -23,9 +23,10 @@ public class Player : MonoBehaviour
     private float invulFlicker = .1f;
     public Color color;
     public float lightTimer;
-    public float lightMax = 1f;
+    public float lightMax = 20f;
     public bool lightShrink;
     public GameManager gameManager;
+    public RoomManager roomManager;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -45,6 +46,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         pMove.movementSpeed = movementSpeed;
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
+        lightShrink = true;
+        lightTimer = lightMax;
     }
 
     public void SetLightRadius(float amt)
@@ -122,23 +127,30 @@ public class Player : MonoBehaviour
             color = new Color(1, 1, 1);
             GetComponentInChildren<SpriteRenderer>().color = color;
         }
-        if(lightTimer>gameManager.currentLight && lightShrink)
+        if (!roomManager.currentRoom.firstClear)
         {
-            lightTimer -= Time.deltaTime;
-            if (lightTimer> gameManager.currentLight)
+            if (lightTimer > gameManager.currentLight && lightShrink)
             {
-                SetLightRadius(lightTimer);
+                lightTimer -= Time.deltaTime * 2;
+                if (lightTimer > gameManager.currentLight)
+                {
+                    SetLightRadius(lightTimer);
+                }
+                else
+                {
+                    SetLightRadius(gameManager.currentLight);
+                }
+                lightTimer -= Time.deltaTime;
             }
-            else
+            else if (lightShrink)
             {
-                SetLightRadius(gameManager.currentLight);
+                lightShrink = false;
+                lightTimer = lightMax;
             }
-            lightTimer -= Time.deltaTime;
         }
-        else if (lightShrink)
+        else
         {
-            lightShrink = false;
-            lightTimer = lightMax;
+            SetLightRadius(20);
         }
     }
 

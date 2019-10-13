@@ -152,6 +152,10 @@ MonoBehaviour:
   player: {fileID: 0}
   cardManager: {fileID: 0}
   enemyManager: {fileID: 0}
+  sunLight: 2.75
+  deathLight: 2
+  moonLight: 1.5
+  currentLight: 0
 --- !u!4 &97916617
 Transform:
   m_ObjectHideFlags: 0
@@ -160,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97916615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4746428, y: -1.2201155, z: -0.7722002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -663,7 +667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473403665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.3200002, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3200002, z: 1}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 0}
