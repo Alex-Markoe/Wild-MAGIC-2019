@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
-  type: 0
+  type: 1
   chosen: 0
   imagesTextPrefab: {fileID: 3557085256913503141, guid: b345f4fcb70b4e24498c66a72ecd036b,
     type: 3}
