@@ -56,18 +56,6 @@ public class TarotCard : MonoBehaviour
     private void OnMouseDown()
     {
         source.Play();
-        if (type == CardType.Sun)
-        {
-            Debug.Log("Your greed for power has reduced your light!");
-        }
-        else if(type == CardType.Death)
-        {
-            Debug.Log("It's time for your rebirth with some new found power!");
-        }
-        else
-        {
-            Debug.Log("You have taken a risk relying on light!");
-        }
 
         chosen = true;
     }

@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     protected int animX;
     protected int animY;
     protected int spriteDirection;
+    private const float angleAnimMax = .4f;
 
     // Start is called before the first frame update
     void Start()
@@ -134,20 +135,20 @@ public class EnemyMovement : MonoBehaviour
         animY = 0;
         spriteDirection = 1;
 
-        if (direction.x < 0)
+        if (direction.x < -angleAnimMax)
         {
             animX = -1;
         }
-        if (direction.x > 0)
+        if (direction.x > angleAnimMax)
         {
             animX = 1;
         }
 
-        if (direction.y < 0)
+        if (direction.y < -angleAnimMax)
         {
             animY = -1;
         }
-        if (direction.y > 0)
+        if (direction.y > angleAnimMax)
         {
             animY = 1;
         }

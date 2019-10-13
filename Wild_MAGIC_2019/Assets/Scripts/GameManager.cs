@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public float moonLight = 1.5f;
     public float currentLight;
     public bool first;
+    public float cutsceneTimer;
+    public float cutsceneMax = 5f;
+    public bool cutsceneActive;
 
     private int sceneIndex;
     private static CardType playerChosen;
@@ -53,11 +56,37 @@ public class GameManager : MonoBehaviour
                     cardManager.cardList.RemoveAt(0);
                 }
                 first = true;
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(7);
+            }
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            if (cutsceneTimer > 0)
+            {
+                cutsceneTimer -= Time.deltaTime;
+                StartCutscene();
+            }
+            else if (cutsceneActive)
+            {
+                cutsceneTimer = cutsceneMax;
+                cutsceneActive = false;
+            }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 8)
+        {
+            if (cutsceneTimer > 0)
+            {
+                cutsceneTimer -= Time.deltaTime;
+                EndCutscene();
+            }
+            else if (cutsceneActive)
+            {
+                cutsceneTimer = cutsceneMax;
+                cutsceneActive = false;
             }
         }
 
-        if(SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             //source.Stop();
             source.clip = bossSong;
@@ -112,6 +141,15 @@ public class GameManager : MonoBehaviour
 
     public void FinalDoor()
     {
+        SceneManager.LoadScene(8);
+    }
+
+    public void StartCutscene()
+    {
         SceneManager.LoadScene(3);
+    }
+    public void EndCutscene()
+    {
+        SceneManager.LoadScene(2);
     }
 }
