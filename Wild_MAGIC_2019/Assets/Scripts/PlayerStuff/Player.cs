@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
         lightShrink = true;
         lightTimer = lightMax;
 
-        source = GetComponent<AudioSource>();
         pMove.clip = audioClips[0];
         pMove.source = source;
     }
@@ -68,6 +67,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        source = GetComponent<AudioSource>();
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
