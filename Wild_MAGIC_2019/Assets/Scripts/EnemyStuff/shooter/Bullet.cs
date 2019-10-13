@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
         direction.Normalize();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = direction * movementSpeed;
+        player = FindObjectOfType<Player>().gameObject;
     }
 
     // Update is called once per frame

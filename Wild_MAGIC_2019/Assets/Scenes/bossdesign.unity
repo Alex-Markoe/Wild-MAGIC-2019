@@ -241,6 +241,11 @@ PrefabInstance:
       propertyPath: hp
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: invulTimer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,7 +387,22 @@ PrefabInstance:
     - target: {fileID: 6988966100166806837, guid: d23804a94480120489f4cc0e08464850,
         type: 3}
       propertyPath: hp
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988966100166806837, guid: d23804a94480120489f4cc0e08464850,
+        type: 3}
+      propertyPath: actionTimer
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988966100166806837, guid: d23804a94480120489f4cc0e08464850,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988966100166806836, guid: d23804a94480120489f4cc0e08464850,
+        type: 3}
+      propertyPath: chargeTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23804a94480120489f4cc0e08464850, type: 3}

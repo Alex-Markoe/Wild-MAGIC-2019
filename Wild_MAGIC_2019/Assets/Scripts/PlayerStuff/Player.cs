@@ -247,7 +247,7 @@ public class Player : MonoBehaviour
                     pMove.dashTimer = -1;
                     pMove.dashing = false;
 
-                    Debug.Log("Hit");
+                    Instantiate(Resources.Load("HitEffect"), transform.position + direction * swordLength, Quaternion.identity);
 
                     i = 60f;
                 }
