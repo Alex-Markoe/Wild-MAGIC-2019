@@ -23,6 +23,10 @@ public class Boss : MonoBehaviour
 
     public GameManager gameManager;
 
+    public bool moving;
+    public float movingTimer;
+    public float movingMax = 1;
+
     private void Start()
     {
         p = GameObject.FindObjectOfType<Player>();
@@ -34,49 +38,73 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer <= 0 && !chargeForAttack)
+        if (moving)
         {
-            float rng = Random.Range(0, 8);
+            if (timer <= 0 && !chargeForAttack)
+            {
+                float rng = Random.Range(0, 8);
 
-            if (rng >= 5 && rng <= 8)
+                if (rng >= 5 && rng <= 8)
+                {
+                    if (currentAttack == null)
+                    {
+                        chargeTimer = chargeTime;
+                        chargeForAttack = true;
+                    }
+                    else
+                    {
+                        if (currentAttack.attackComplete)
+                        {
+                            chargeTimer = chargeTime;
+                            chargeForAttack = true;
+                        }
+                    }
+                }
+
+                timer = actionTimer;
+            }
+
+            if (!chargeForAttack)
             {
                 if (currentAttack == null)
                 {
-                    chargeTimer = chargeTime;
-                    chargeForAttack = true;
+                    if (Vector3.Distance(p.transform.position, transform.position) >= 0.1f)
+                    {
+                        rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+                    }
                 }
                 else
                 {
                     if (currentAttack.attackComplete)
                     {
-                        chargeTimer = chargeTime;
-                        chargeForAttack = true;
+                        if (Vector3.Distance(p.transform.position, transform.position) >= 2)
+                        {
+                            rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
+                        }
                     }
                 }
             }
 
-            timer = actionTimer;
+            if (chargeForAttack)
+            {
+                if (chargeTimer <= 0)
+                {
+                    Attack();
+                    chargeForAttack = false;
+                }
+                if (chargeTimer > 0)
+                {
+                    chargeTimer -= Time.deltaTime;
+                }
+            }
         }
-
-        if (!chargeForAttack)
+        if (movingTimer > movingMax)
         {
-            if (currentAttack == null)
-            {
-                if (Vector3.Distance(p.transform.position, transform.position) >= 0.1f)
-                {
-                    rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
-                }
-            }
-            else
-            {
-                if (currentAttack.attackComplete)
-                {
-                    if (Vector3.Distance(p.transform.position, transform.position) >= 2)
-                    {
-                        rb.MovePosition(transform.position + (p.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime);
-                    }
-                }
-            }
+            moving = true;
+        }
+        else
+        {
+            movingTimer += Time.deltaTime;
         }
 
         if (timer > 0)
@@ -88,18 +116,6 @@ public class Boss : MonoBehaviour
         }
 
         SetAnim();
-        if(chargeForAttack)
-        {
-            if(chargeTimer <= 0)
-            {
-                Attack();
-                chargeForAttack = false;
-            }
-            if(chargeTimer > 0)
-            {
-                chargeTimer -= Time.deltaTime;
-            }
-        }
     }
 
     void Attack()
