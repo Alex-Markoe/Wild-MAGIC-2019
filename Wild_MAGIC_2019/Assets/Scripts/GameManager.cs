@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
         }
         if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 3)
         {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             if (player.hp <= 0)
             {
                 first = true;
