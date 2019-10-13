@@ -17,6 +17,15 @@ public class Player : MonoBehaviour
     public float flickerSpeed = 0.25f;
     private float flicker;
     public Rigidbody2D rb;
+    public bool invul = false;
+    public float invulTimer;
+    private float invulMax = .5f;
+    private float invulFlicker = .1f;
+    public Color color;
+    public float lightTimer;
+    public float lightMax = 1f;
+    public bool lightShrink;
+    public GameManager gameManager;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -72,6 +81,65 @@ public class Player : MonoBehaviour
         else
         {
             flicker -= Time.deltaTime;
+        }
+
+        if (invulTimer > invulFlicker * 5 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 4 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 3 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 2 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invul)
+        {
+            invul = false;
+            invulTimer = invulMax;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        if(lightTimer>gameManager.currentLight && lightShrink)
+        {
+            lightTimer -= Time.deltaTime;
+            if (lightTimer> gameManager.currentLight)
+            {
+                SetLightRadius(lightTimer);
+            }
+            else
+            {
+                SetLightRadius(gameManager.currentLight);
+            }
+            lightTimer -= Time.deltaTime;
+        }
+        else if (lightShrink)
+        {
+            lightShrink = false;
+            lightTimer = lightMax;
         }
     }
 
@@ -180,9 +248,13 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(float amt)
     {
-        hp -= amt;
+        if (!invul)
+        {
+            hp -= amt;
+            Camera.main.GetComponent<ScreenShake>().Shake();
+            invul = true;
+        }
 
-        Camera.main.GetComponent<ScreenShake>().Shake();
     }
 
     public Vector3 GetPosition()

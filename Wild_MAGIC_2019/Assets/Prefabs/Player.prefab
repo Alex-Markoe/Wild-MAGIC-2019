@@ -279,11 +279,14 @@ MonoBehaviour:
   attackDamage: 1
   attackTime: 0.1
   swordLength: 1.6
-  dashing: 1
+  dashing: 0
   lightRadius: 2
   lightMask: {fileID: 4267173006727459867}
   flickerSpeed: 0.1
   rb: {fileID: 4413059963424685602}
+  invul: 0
+  invulTimer: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   pMove: {fileID: 4413059963424685605}
   swordObject: {fileID: 7101193316059895495, guid: fffe6b3a0a0ec2b4abdd8e7d8ee6e146,
     type: 3}
