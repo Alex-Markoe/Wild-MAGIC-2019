@@ -10,6 +10,7 @@ public class Room : MonoBehaviour
     public bool cleared;
     public bool firstClear;
     public Vector3 center;
+    public int roomIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,6 @@ public class Room : MonoBehaviour
         }
 
         cleared = false;
-        firstClear = false;
     }
 
     // Update is called once per frame

@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentRoom = rooms[roomIndex];
+        currentRoom = rooms[0];
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class RoomManager : MonoBehaviour
 
     public void MoveRoom(int roomIndex, Vector3 pPos)
     {
-        currentRoom.firstClear = true;
+        rooms[currentRoom.roomIndex].firstClear = true;
         this.roomIndex = roomIndex;
         cam.transform.position = rooms[roomIndex].center;
         screenShake.startPos = cam.transform.position;

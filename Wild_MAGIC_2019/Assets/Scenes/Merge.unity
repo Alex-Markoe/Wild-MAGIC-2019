@@ -2055,6 +2055,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 65, y: 0, z: -10}
+  roomIndex: 5
 --- !u!4 &121465620
 Transform:
   m_ObjectHideFlags: 0
@@ -3948,11 +3949,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
-        type: 3}
-      propertyPath: dashing
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4006,6 +4002,11 @@ PrefabInstance:
     - target: {fileID: 4413059963424685601, guid: 7c52580f8fb2c3947ae292cb37e684bf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
+        type: 3}
+      propertyPath: dashing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4413059963424685604, guid: 7c52580f8fb2c3947ae292cb37e684bf,
@@ -4136,6 +4137,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 0, y: 20, z: -10}
+  roomIndex: 1
 --- !u!4 &287599957
 Transform:
   m_ObjectHideFlags: 0
@@ -11234,6 +11236,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 98, y: 0, z: -10}
+  roomIndex: 6
 --- !u!4 &780009801
 Transform:
   m_ObjectHideFlags: 0
@@ -18569,6 +18572,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 33, y: 40, z: -10}
+  roomIndex: 3
 --- !u!4 &1470934059
 Transform:
   m_ObjectHideFlags: 0
@@ -18637,6 +18641,7 @@ MonoBehaviour:
   cleared: 1
   firstClear: 1
   center: {x: 0, y: 0, z: -10}
+  roomIndex: 0
 --- !u!1 &1490969218
 GameObject:
   m_ObjectHideFlags: 0
@@ -22126,6 +22131,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 33, y: 0, z: -10}
+  roomIndex: 4
 --- !u!4 &1849648369
 Transform:
   m_ObjectHideFlags: 0
@@ -22544,6 +22550,7 @@ MonoBehaviour:
   cleared: 0
   firstClear: 0
   center: {x: 33, y: 20, z: -10}
+  roomIndex: 2
 --- !u!4 &1987297997
 Transform:
   m_ObjectHideFlags: 0

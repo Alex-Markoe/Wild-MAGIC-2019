@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private float invulFlicker = .1f;
     public Color color;
     public float lightTimer;
-    public float lightMax = 20f;
+    public float lightMax = 15f;
     public bool lightShrink;
     public GameManager gameManager;
     public RoomManager roomManager;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         {
             if (lightTimer > gameManager.currentLight && lightShrink)
             {
-                lightTimer -= Time.deltaTime * 2;
+                lightTimer -= Time.deltaTime * 10;
                 if (lightTimer > gameManager.currentLight)
                 {
                     SetLightRadius(lightTimer);
