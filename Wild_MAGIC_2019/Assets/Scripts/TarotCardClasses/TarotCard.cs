@@ -18,7 +18,9 @@ public class TarotCard : MonoBehaviour
     public GameObject imagesTextPrefab;
     private GameObject imagesText;
 
-    public Camera myCamera;
+    private Camera myCamera;
+
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class TarotCard : MonoBehaviour
         myCamera = Camera.main;
         imagesText = Instantiate(imagesTextPrefab);
         imagesText.gameObject.transform.position = new Vector3(-100, -100, 0);
+
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +55,7 @@ public class TarotCard : MonoBehaviour
 
     private void OnMouseDown()
     {
+        source.Play();
         if (type == CardType.Sun)
         {
             Debug.Log("Your greed for power has reduced your light!");

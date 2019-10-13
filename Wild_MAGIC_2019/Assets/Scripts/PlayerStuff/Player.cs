@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
 
     private float swordTimer;
 
+    private AudioSource source;
+    public AudioClip[] audioClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +53,10 @@ public class Player : MonoBehaviour
         roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
         lightShrink = true;
         lightTimer = lightMax;
+
+        source = GetComponent<AudioSource>();
+        pMove.clip = audioClips[0];
+        pMove.source = source;
     }
 
     public void SetLightRadius(float amt)
@@ -156,6 +163,8 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
+        source.clip = audioClips[1];
+        source.Play();
         if(dashing)
         {
             pMove.Dash();
@@ -270,6 +279,8 @@ public class Player : MonoBehaviour
     {
         if (!invul)
         {
+            source.clip = audioClips[2];
+            source.Play();
             hp -= amt;
             Camera.main.GetComponent<ScreenShake>().Shake();
             invul = true;
