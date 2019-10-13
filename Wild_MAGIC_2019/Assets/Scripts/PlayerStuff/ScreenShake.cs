@@ -9,7 +9,8 @@ public class ScreenShake : MonoBehaviour
     public float shakeSize = 0.25f;
 
     private float shake;
-    private Vector3 startPos;
+    public Vector3 startPos;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,10 @@ public class ScreenShake : MonoBehaviour
         {
             transform.position = new Vector3(Random.Range(startPos.x - shakeSize, startPos.x + shakeSize), Random.Range(startPos.y - shakeSize, startPos.y + shakeSize), startPos.z);
             shake -= Time.deltaTime;
+        }
+        else
+        {
+            transform.position = startPos;
         }
     }
 

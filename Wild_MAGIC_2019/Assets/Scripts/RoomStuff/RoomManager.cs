@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
     public int roomIndex;
     public GameObject cam;
     public Player p;
+    public ScreenShake screenShake;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class RoomManager : MonoBehaviour
     {
         this.roomIndex = roomIndex;
         cam.transform.position = rooms[roomIndex].center;
+        screenShake.startPos = cam.transform.position;
         rooms[roomIndex].EnableRoom();
         p.transform.position = pPos;
     }
