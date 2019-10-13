@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(playerChosen);
             if (playerChosen == CardType.Sun)
             {
-                player.SetLightRadius(3f);
+                player.SetLightRadius(2.5f);
                 for (int i = 0; i < enemyManager.enemies.Length; i++)
                 {
                     enemyManager.enemies[i].movementSpeed *= 5f;

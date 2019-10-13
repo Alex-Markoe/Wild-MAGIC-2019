@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2507143345686622714}
   - component: {fileID: 1602160388095030440}
   - component: {fileID: 2226790409763780947}
+  - component: {fileID: 1213165847409475217}
   m_Layer: 0
   m_Name: TheSun
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   imagesTextPrefab: {fileID: 5089327717170778166, guid: 9677e8d2472c4c0428e4087e5ce62fbe,
     type: 3}
   myCamera: {fileID: 0}
+--- !u!114 &1213165847409475217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039590450694422426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66933cd68846164babbade4f4c3fb44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

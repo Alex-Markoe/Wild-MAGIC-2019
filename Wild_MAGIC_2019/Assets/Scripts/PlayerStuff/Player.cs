@@ -59,12 +59,13 @@ public class Player : MonoBehaviour
         {
             Attack();
             pMove.attacking = true;
-            pMove.dashing = true;
+            pMove.dashing = dashing;
         }
 
         if (flicker <= 0)
         {
-            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(Random.Range(lightRadius, lightRadius + 0.2f), Random.Range(lightRadius, lightRadius + 0.2f), 0), 10f * Time.deltaTime);
+            float flickerScale = Random.Range(lightRadius, lightRadius + 0.2f);
+            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(flickerScale, flickerScale), 10f * Time.deltaTime);
             flicker = flickerSpeed;
         }
         else
@@ -167,11 +168,20 @@ public class Player : MonoBehaviour
             RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
             {
-                if (col.transform.gameObject.tag == "Enemy")
+                if (col.transform.gameObject.tag == "Enemy" || col.transform.gameObject.tag == "Boss")
                 {
                     if (col.transform.GetComponent<EnemyBase>() != null)
                         col.transform.GetComponent<EnemyBase>().TakeDamage(1);
-                    i = arcSize / 2;
+
+                    if (col.transform.GetComponent<Boss>() != null)
+                        col.transform.GetComponent<Boss>().TakeDamage(1);
+
+                    pMove.dashTimer = -1;
+                    pMove.dashing = false;
+
+                    Debug.Log("Hit");
+
+                    i = 60f;
                 }
             }
         }
