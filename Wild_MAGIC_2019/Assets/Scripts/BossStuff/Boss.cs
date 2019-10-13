@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public BossMovement bMove;
     public BossAttack[] attacks;
     public float actionTimer;
     public float hp;

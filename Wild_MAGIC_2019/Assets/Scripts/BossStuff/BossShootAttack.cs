@@ -17,6 +17,7 @@ public class BossShootAttack : BossAttack
 
             GameObject bBullet = Instantiate(bossBullet, transform.position, Quaternion.FromToRotation(Vector3.right, new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0)));
             bBullet.GetComponent<Rigidbody2D>().velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0).normalized * bulletSpeed;
+            bBullet.GetComponent<BossBullet>().damage = attackDamage;
         }
         base.DoAttack();
 

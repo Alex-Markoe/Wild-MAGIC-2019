@@ -16,8 +16,11 @@ public class EnemyMovement : MonoBehaviour
     public bool colliding = true;
     public GameObject playerOBJ;
 
-    private Animator animBug;
+    protected Animator anim;
     protected bool attacking;
+    protected int animX;
+    protected int animY;
+    protected int spriteDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
         attacking = true;
         rng = Random.Range(1, 9);
         rb = GetComponent<Rigidbody2D>();
-        animBug = GetComponentInChildren<Animator>();
+        anim = GetComponentInChildren<Animator>();
         currentTime = Time.time;
         colliding = false;
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
@@ -41,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
         }
-        if (currentTime > interval && !attacking)
+        if (currentTime > interval)
         {
             Move();
             currentTime = 0;
@@ -111,55 +114,55 @@ public class EnemyMovement : MonoBehaviour
 
     public virtual void SetAnim()
     {
-        int x = 0;
-        int y = 0;
-        int spriteDirection = 1;
+        animX = 0;
+        animY = 0;
+        spriteDirection = 1;
 
         if (direction.x < 0)
         {
-            x = -1;
+            animX = -1;
         }
         if (direction.x > 0)
         {
-            x = 1;
+            animX = 1;
         }
 
         if (direction.y < 0)
         {
-            y = -1;
+            animY = -1;
         }
         if (direction.y > 0)
         {
-            y = 1;
+            animY = 1;
         }
 
-        if (x > 0)
+        if (animX > 0)
         {
-            if (y > 0)
+            if (animY > 0)
                 spriteDirection = 7;
-            else if (y < 0)
+            else if (animY < 0)
                 spriteDirection = 5;
             else
                 spriteDirection = 1;
         }
-        else if (x < 0)
+        else if (animX < 0)
         {
-            if (y > 0)
+            if (animY > 0)
                 spriteDirection = 8;
-            else if (y < 0)
+            else if (animY < 0)
                 spriteDirection = 6;
             else
                 spriteDirection = 2;
         }
-        else if (y > 0)
+        else if (animY > 0)
         {
             spriteDirection = 4;
         }
-        else if (y < 0)
+        else if (animY < 0)
         {
             spriteDirection = 3;
         }
 
-        animBug.SetInteger("Direction", spriteDirection);
+        anim.SetInteger("Direction", spriteDirection);
     }
 }
