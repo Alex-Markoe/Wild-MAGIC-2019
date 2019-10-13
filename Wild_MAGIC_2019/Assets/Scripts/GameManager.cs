@@ -20,6 +20,25 @@ public class GameManager : MonoBehaviour
         if(sceneIndex == 2)
         {
             player = Instantiate<Player>(playerPrefab);
+
+            if(playerChosen == CardType.Devil)
+            {
+                //Change the lights radius
+                for (int i = 0; i < enemyManager.enemies.Length; i++)
+                {
+                    enemyManager.enemies[i].movementSpeed *= 5f;
+                }
+            }
+            else if(playerChosen == CardType.Judgement)
+            {
+                player.hp = 1;
+                player.attackDamage *= 2;
+            }
+            else if(playerChosen == CardType.WheelOfFortune)
+            {
+                //Will Change players radius to shrink and implement dash attack soon
+            }
+
         }
     }
 
