@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed = 3f;
     public bool attacking;
-
     private Rigidbody2D rb;
     private Animator anim;
     public Vector3 direction;
@@ -15,12 +14,16 @@ public class PlayerMovement : MonoBehaviour
     public float dashTimer;
     private float dashMax = .125f;
     public bool dashing = false;
+    public bool moving;
+    public float movingTimer;
+    public float movingMax = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        moving = true;
     }
 
     // Update is called once per frame
@@ -31,8 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.magnitude > 1)
             direction = direction.normalized;
-
-        SetAnim();
 
         if (dashTimer > 0)
         {
@@ -45,15 +46,28 @@ public class PlayerMovement : MonoBehaviour
             dashing = false;
             dashSpeed = .2f;
         }
+
+        SetAnim();
     }
 
     private void FixedUpdate()
     {
-
-        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
+        if (moving)
         {
-            rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
+            {
+                rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            }
         }
+        if(movingTimer>movingMax)
+        {
+            moving = true;
+        }
+        else
+        {
+            movingTimer += Time.deltaTime;
+        }
+        
     }
     public Vector3 GetDirection()
     {
@@ -111,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             spriteDirection = 3;
         }
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && moving == true)
         {
             running = true;
         }
