@@ -8,7 +8,8 @@ public class BossDashAttack : BossAttack
     private Vector3 dashTarget;
     private Rigidbody2D rb;
 
-    private float dashSpeed = 3f;
+    public float dashSpeed = 3f;
+    public float attackRange = 2f;
 
     private void Start()
     {
@@ -24,6 +25,12 @@ public class BossDashAttack : BossAttack
             rb.MovePosition(Vector3.Lerp(transform.position, dashTarget, dashSpeed * Time.deltaTime));
         } else
         {
+            attackComplete = true;
+        }
+
+        if(Vector3.Distance(transform.position, p.transform.position) <= attackRange && !attackComplete)
+        {
+            p.TakeDamage(attackDamage);
             attackComplete = true;
         }
     }

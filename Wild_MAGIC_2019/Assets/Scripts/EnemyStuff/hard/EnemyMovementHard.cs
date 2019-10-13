@@ -6,9 +6,9 @@ public class EnemyMovementHard : EnemyMovement
 {
     public float attackTimer;
     public float attackTimerInterval = 2f;
-    public bool attacking;
 
     private Animator animZomb;
+    private const float angleAnimMax = .4f;
 
     private void Start()
     {
@@ -19,6 +19,7 @@ public class EnemyMovementHard : EnemyMovement
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
         player = playerOBJ.GetComponent<Player>();
         animZomb = GetComponentInChildren<Animator>();
+        attacking = false;
     }
 
     public override void Update()
@@ -34,7 +35,8 @@ public class EnemyMovementHard : EnemyMovement
             attackTimer = attackTimerInterval;
             attacking = true;
         }
-        Move();
+        if (!attacking)
+            Move();
         
         base.Update();
     }
@@ -53,20 +55,20 @@ public class EnemyMovementHard : EnemyMovement
         int y = 0;
         int spriteDirection = 1;
 
-        if (direction.x < 0)
+        if (direction.x < -angleAnimMax)
         {
             x = -1;
         }
-        if (direction.x > 0)
+        if (direction.x > angleAnimMax)
         {
             x = 1;
         }
 
-        if (direction.y < 0)
+        if (direction.y < -angleAnimMax)
         {
             y = -1;
         }
-        if (direction.y > 0)
+        if (direction.y > angleAnimMax)
         {
             y = 1;
         }

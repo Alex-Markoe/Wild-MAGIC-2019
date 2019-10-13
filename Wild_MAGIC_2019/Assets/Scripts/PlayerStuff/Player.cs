@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     public Sprite heart;
 
     private float swordTimer;
-    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +59,7 @@ public class Player : MonoBehaviour
         {
             Attack();
             pMove.attacking = true;
-            pMove.dashing = true;
+            pMove.dashing = dashing;
         }
 
         if (flicker <= 0)
@@ -169,11 +168,20 @@ public class Player : MonoBehaviour
             RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
             {
-                if (col.transform.gameObject.tag == "Enemy")
+                if (col.transform.gameObject.tag == "Enemy" || col.transform.gameObject.tag == "Boss")
                 {
                     if (col.transform.GetComponent<EnemyBase>() != null)
                         col.transform.GetComponent<EnemyBase>().TakeDamage(1);
-                    i = arcSize / 2;
+
+                    if (col.transform.GetComponent<Boss>() != null)
+                        col.transform.GetComponent<Boss>().TakeDamage(1);
+
+                    pMove.dashTimer = -1;
+                    pMove.dashing = false;
+
+                    Debug.Log("Hit");
+
+                    i = 60f;
                 }
             }
         }

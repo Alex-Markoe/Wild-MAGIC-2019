@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour
     public BossMovement bMove;
     public BossAttack[] attacks;
     public float actionTimer;
+    public float hp;
 
     private BossAttack currentAttack;
 
@@ -34,8 +35,14 @@ public class Boss : MonoBehaviour
 
             timer = actionTimer;
         }
+
         if (timer > 0)
             timer -= Time.deltaTime;
+
+        if(hp <= 0)
+        {
+            Die();
+        }
     }
 
     void Attack()
@@ -45,8 +52,18 @@ public class Boss : MonoBehaviour
             currentAttack.attackComplete = false;
         }
 
-        int attackIndex = Random.Range(0, attacks.Length - 1);
+        int attackIndex = Random.Range(0, attacks.Length);
         currentAttack = attacks[attackIndex];
         attacks[attackIndex].DoAttack();
+    }
+
+    public void TakeDamage(float amt)
+    {
+        hp -= amt;
+    }
+
+    void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -17,10 +17,12 @@ public class EnemyMovement : MonoBehaviour
     public GameObject playerOBJ;
 
     private Animator animBug;
+    protected bool attacking;
 
     // Start is called before the first frame update
     void Start()
     {
+        attacking = true;
         rng = Random.Range(1, 9);
         rb = GetComponent<Rigidbody2D>();
         animBug = GetComponentInChildren<Animator>();
@@ -39,7 +41,7 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
         }
-        if (currentTime > interval)
+        if (currentTime > interval && !attacking)
         {
             Move();
             currentTime = 0;
