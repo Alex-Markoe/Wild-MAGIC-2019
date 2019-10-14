@@ -8,7 +8,10 @@ public class Room : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] doors;
     public bool cleared;
+    public bool firstClear;
     public Vector3 center;
+    public float camSize;
+    public int roomIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,7 @@ public class Room : MonoBehaviour
             if(enemy != null)
             {
                 cleared = false;
+                firstClear = false;
             }
         }
 

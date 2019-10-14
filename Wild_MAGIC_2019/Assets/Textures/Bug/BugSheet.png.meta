@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 9c0991a89a7a2d6418511ed342f33ad8
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 144449548955859567
+    second: BugSheet_0
+  - first:
+      213: -8118780578074929563
+    second: BugSheet_1
+  - first:
+      213: -6703314584443681565
+    second: BugSheet_2
+  - first:
+      213: -8705450808842389570
+    second: BugSheet_3
+  - first:
+      213: -6803872449416561393
+    second: BugSheet_4
+  - first:
+      213: -1046516191294532339
+    second: BugSheet_5
+  - first:
+      213: 6286487461977759828
+    second: BugSheet_6
+  - first:
+      213: -7033909844934717598
+    second: BugSheet_7
+  - first:
+      213: 7050588672087664828
+    second: BugSheet_8
+  - first:
+      213: 6314919173069931744
+    second: BugSheet_9
+  - first:
+      213: 8635114251370764369
+    second: BugSheet_10
+  - first:
+      213: -7108316058319295321
+    second: BugSheet_11
+  - first:
+      213: -4539360124476051566
+    second: BugSheet_12
+  - first:
+      213: -1215521441583482085
+    second: BugSheet_13
+  - first:
+      213: 3040263538263446113
+    second: BugSheet_14
+  - first:
+      213: -3291108489825373478
+    second: BugSheet_15
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +79,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,7 +141,343 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BugSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c5b33989b4baab4d97e13c1c909b4e0
+      internalID: 144449548955859567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_1
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11fcab85541f9f4fbeda5fbc83906c6
+      internalID: -8118780578074929563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_2
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0f291b36dce0954b9aa4ed9d1f5c652
+      internalID: -6703314584443681565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_3
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc75204e6b8c99c4d850feda53692174
+      internalID: -8705450808842389570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_4
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079b761cec40b0e46b72028b57c2c4ba
+      internalID: -6803872449416561393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_5
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9efa6798d17375c4d92d4e609fb60576
+      internalID: -1046516191294532339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_6
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852479493537cdc4d8673c2838a49e8a
+      internalID: 6286487461977759828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 85
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6442589b7a0cb424ebe63d38fcf8e2be
+      internalID: -7033909844934717598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c69aefc8590594186a99dc860fc0a9
+      internalID: 7050588672087664828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c82e1505360c70a498595fa251dabc98
+      internalID: 6314919173069931744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_10
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a6d09cc35e27b40b1acfc2bdb26d54
+      internalID: 8635114251370764369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_11
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afcac53099a9d44fb9f9814780433db
+      internalID: -7108316058319295321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_12
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c09d5388ad78fc8479f73e393406ff2a
+      internalID: -4539360124476051566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_13
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33cec649170e5b94dbd3c7957a5a0519
+      internalID: -1215521441583482085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_14
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652895ac11b50e9448c130ed36afe63c
+      internalID: 3040263538263446113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BugSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 0
+        width: 145
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0f781837ae4ee41a40f3f273a0fe9d
+      internalID: -3291108489825373478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

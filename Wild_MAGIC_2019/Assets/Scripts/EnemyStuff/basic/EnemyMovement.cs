@@ -15,12 +15,24 @@ public class EnemyMovement : MonoBehaviour
     public float waitTimerInterval = 1;
     public bool colliding = true;
     public GameObject playerOBJ;
+    public bool moving;
+    public float movingTimer;
+    public float movingMax = 1;
+
+    protected Animator anim;
+    protected bool attacking;
+    protected int animX;
+    protected int animY;
+    protected int spriteDirection;
+    private const float angleAnimMax = .4f;
 
     // Start is called before the first frame update
     void Start()
     {
+        attacking = true;
         rng = Random.Range(1, 9);
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
         currentTime = Time.time;
         colliding = false;
         playerOBJ = GameObject.FindGameObjectWithTag("Player");
@@ -32,15 +44,30 @@ public class EnemyMovement : MonoBehaviour
     {
         rng = Random.Range(1, 9);
         currentTime += Time.deltaTime;
-        if (!colliding)
+
+
+        if (moving)
         {
-            rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            if (!colliding)
+            {
+                rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+            }
+            if (currentTime > interval)
+            {
+                Move();
+                currentTime = 0;
+            }
         }
-        if (currentTime > interval)
+        if (movingTimer > movingMax)
         {
-            Move();
-            currentTime = 0;
+            moving = true;
         }
+        else
+        {
+            movingTimer += Time.deltaTime;
+        }
+
+        SetAnim();
     }
 
     //  basic movement
@@ -104,53 +131,55 @@ public class EnemyMovement : MonoBehaviour
 
     public virtual void SetAnim()
     {
-        int x = 0;
-        int y = 0;
-        int spriteDirection = 1;
+        animX = 0;
+        animY = 0;
+        spriteDirection = 1;
 
-        if (direction.x < 0)
+        if (direction.x < -angleAnimMax)
         {
-            x = -1;
+            animX = -1;
         }
-        if (direction.x > 0)
+        if (direction.x > angleAnimMax)
         {
-            x = 1;
-        }
-
-        if (direction.y < 0)
-        {
-            y = -1;
-        }
-        if (direction.y > 0)
-        {
-            y = 1;
+            animX = 1;
         }
 
-        if (x > 0)
+        if (direction.y < -angleAnimMax)
         {
-            if (y > 0)
+            animY = -1;
+        }
+        if (direction.y > angleAnimMax)
+        {
+            animY = 1;
+        }
+
+        if (animX > 0)
+        {
+            if (animY > 0)
                 spriteDirection = 7;
-            else if (y < 0)
+            else if (animY < 0)
                 spriteDirection = 5;
             else
                 spriteDirection = 1;
         }
-        else if (x < 0)
+        else if (animX < 0)
         {
-            if (y > 0)
+            if (animY > 0)
                 spriteDirection = 8;
-            else if (y < 0)
+            else if (animY < 0)
                 spriteDirection = 6;
             else
                 spriteDirection = 2;
         }
-        else if (y > 0)
+        else if (animY > 0)
         {
             spriteDirection = 4;
         }
-        else if (y < 0)
+        else if (animY < 0)
         {
             spriteDirection = 3;
         }
+
+        anim.SetInteger("Direction", spriteDirection);
     }
 }

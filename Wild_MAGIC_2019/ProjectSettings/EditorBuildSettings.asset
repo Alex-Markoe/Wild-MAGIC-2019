@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/GameScene.unity
+    guid: 76393cacc2d9abe489fab13c87102329
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 5d6807cea259cdc45b7260054b600b2b
@@ -12,15 +18,21 @@ EditorBuildSettings:
     path: Assets/Scenes/TarotCardSelector.unity
     guid: e732a576ad35f844f88e0de49e9d9bde
   - enabled: 1
+    path: Assets/Scenes/BeginCutscene.unity
+    guid: e9a9029d01102094d84baa2e5f7d3511
+  - enabled: 1
     path: Assets/Scenes/Merge.unity
     guid: d12201285cd9aae4692301c845512a39
   - enabled: 1
-    path: Assets/Scenes/EndScene.unity
+    path: Assets/Scenes/EndingCutscene.unity
+    guid: 99a381d05e22379418a2e0182b6c8189
+  - enabled: 1
+    path: Assets/Scenes/BossRoomScene.unity
+    guid: c172804e6916b0d49864fe612a0eaac0
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
     guid: 3ee25a9b9dd10cf4e81b09722a5ae57c
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: 76393cacc2d9abe489fab13c87102329
+  - enabled: 1
+    path: Assets/Scenes/LosingScene.unity
+    guid: 2e7f019bf2f0ad84997d712bbed16ebe
   m_configObjects: {}

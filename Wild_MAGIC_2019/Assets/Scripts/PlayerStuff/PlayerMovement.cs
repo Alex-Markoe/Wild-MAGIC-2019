@@ -6,16 +6,35 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed = 3f;
     public bool attacking;
-
     private Rigidbody2D rb;
     private Animator anim;
-    private Vector3 direction;
+    public Vector3 direction;
+    public Player player;
+    private float dashSpeed = .005f;
+    public float dashTimer;
+    private float dashMax = .125f;
+    public bool dashing = false;
+    public bool moving;
+    public float movingTimer;
+    public float movingMax = 1;
+
+    public AudioSource source;
+    public AudioClip clip;
+
+    private float previousHorizontalAxis;
+    private float previousVerticalAxis;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+        moving = true;
+
+        previousHorizontalAxis = 0;
+        previousVerticalAxis = 0;
+
+        
     }
 
     // Update is called once per frame
@@ -27,13 +46,46 @@ public class PlayerMovement : MonoBehaviour
         if (direction.magnitude > 1)
             direction = direction.normalized;
 
+        if (dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+            player.Attack();
+        }
+        else if (dashing)
+        {
+            dashTimer = dashMax;
+            dashing = false;
+            dashSpeed = .2f;
+        }
+        source = GetComponent<AudioSource>();
         SetAnim();
     }
 
     private void FixedUpdate()
     {
-        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
-            rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+        if (moving)
+        {
+            if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && !attacking)
+            {
+                rb.MovePosition(transform.position + (direction * movementSpeed * Time.deltaTime));
+
+                if ((previousVerticalAxis != 0 || previousHorizontalAxis != 0) && !source.isPlaying)
+                {
+                    source.clip = clip;
+                    source.Play();
+                }
+            }
+        }
+        if(movingTimer>movingMax)
+        {
+            moving = true;
+        }
+        else
+        {
+            movingTimer += Time.deltaTime;
+        }
+        previousHorizontalAxis = Input.GetAxis("Horizontal");
+        previousVerticalAxis = Input.GetAxis("Vertical");
     }
     public Vector3 GetDirection()
     {
@@ -91,11 +143,11 @@ public class PlayerMovement : MonoBehaviour
             spriteDirection = 3;
         }
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if ((Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) && moving == true)
         {
             running = true;
         }
-        if (attacking)
+        if (attacking && !dashing)
         {
             running = false;
         }
@@ -103,5 +155,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("Running", running);
         anim.SetBool("Attacking", attacking);
         anim.SetInteger("Direction", spriteDirection);
+    }
+
+    public void Dash()
+    {
+        rb.MovePosition(transform.position + (direction.normalized * dashSpeed));
+        dashSpeed *= 1.2f;
     }
 }

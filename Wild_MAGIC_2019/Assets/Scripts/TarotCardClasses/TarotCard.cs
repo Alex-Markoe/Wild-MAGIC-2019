@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum CardType
 {
-    WheelOfFortune,
-    Judgement,
-    Devil,
+    Sun,
+    Death,
+    Moon,
     None
 }
 public class TarotCard : MonoBehaviour
@@ -14,19 +14,23 @@ public class TarotCard : MonoBehaviour
     public Vector3 position;
     public CardType type;
     public bool chosen;
-    private BoxCollider2D collider;
+    private BoxCollider2D col;
     public GameObject imagesTextPrefab;
     private GameObject imagesText;
 
-    public Camera myCamera;
+    private Camera myCamera;
+
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         chosen = false;
-        collider = GetComponent<BoxCollider2D>();
+        col = GetComponent<BoxCollider2D>();
         myCamera = Camera.main;
         imagesText = Instantiate(imagesTextPrefab);
         imagesText.gameObject.transform.position = new Vector3(-100, -100, 0);
+
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class TarotCard : MonoBehaviour
     {
         if(isHovered())
         {
-            imagesText.transform.position = new Vector3(collider.bounds.min.x - 2.25f, collider.bounds.center.y, 1);
+            imagesText.transform.position = new Vector3(col.bounds.center.x, col.bounds.center.y, 1);
         }
         else
         {
@@ -51,18 +55,7 @@ public class TarotCard : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (type == CardType.Devil)
-        {
-            Debug.Log("Your greed for power has reduced your light!");
-        }
-        else if(type == CardType.Judgement)
-        {
-            Debug.Log("It's time for your rebirth with some new found power!");
-        }
-        else
-        {
-            Debug.Log("You have taken a risk relying on light!");
-        }
+        source.Play();
 
         chosen = true;
     }
@@ -70,8 +63,8 @@ public class TarotCard : MonoBehaviour
     private bool isHovered()
     {
         Vector3 mousePosition = myCamera.ScreenToWorldPoint(Input.mousePosition);
-        if ((mousePosition.x > collider.bounds.min.x && mousePosition.x < collider.bounds.max.x) &&
-            (mousePosition.y > collider.bounds.min.y && mousePosition.y < collider.bounds.max.y))
+        if ((mousePosition.x > col.bounds.min.x && mousePosition.x < col.bounds.max.x) &&
+            (mousePosition.y > col.bounds.min.y && mousePosition.y < col.bounds.max.y))
         {
             return true;
         }

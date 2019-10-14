@@ -6,18 +6,21 @@ public class EnemyMovementHard : EnemyMovement
 {
     public float attackTimer;
     public float attackTimerInterval = 2f;
-    public bool attacking;
-
-    private Animator anim;
 
     private void Start()
     {
+        rng = Random.Range(1, 9);
+        rb = GetComponent<Rigidbody2D>();
+        currentTime = Time.time;
+        colliding = false;
+        playerOBJ = GameObject.FindGameObjectWithTag("Player");
+        player = playerOBJ.GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();
+        attacking = false;
     }
 
     public override void Update()
     {
-        base.Update();
         if(attackTimer>0)
         {
             attackTimer -= Time.deltaTime;
@@ -29,8 +32,10 @@ public class EnemyMovementHard : EnemyMovement
             attackTimer = attackTimerInterval;
             attacking = true;
         }
-        Move();
-        SetAnim();
+        if (!attacking)
+            Move();
+        
+        base.Update();
     }
 
     //  hard movement
@@ -43,56 +48,8 @@ public class EnemyMovementHard : EnemyMovement
 
     public override void SetAnim()
     {
-        int x = 0;
-        int y = 0;
-        int spriteDirection = 1;
+        base.SetAnim();
 
-        if (direction.x < 0)
-        {
-            x = -1;
-        }
-        if (direction.x > 0)
-        {
-            x = 1;
-        }
-
-        if (direction.y < 0)
-        {
-            y = -1;
-        }
-        if (direction.y > 0)
-        {
-            y = 1;
-        }
-
-        if (x > 0)
-        {
-            if (y > 0)
-                spriteDirection = 7;
-            else if (y < 0)
-                spriteDirection = 5;
-            else
-                spriteDirection = 1;
-        }
-        else if (x < 0)
-        {
-            if (y > 0)
-                spriteDirection = 8;
-            else if (y < 0)
-                spriteDirection = 6;
-            else
-                spriteDirection = 2;
-        }
-        else if (y > 0)
-        {
-            spriteDirection = 4;
-        }
-        else if (y < 0)
-        {
-            spriteDirection = 3;
-        }
-
-        anim.SetInteger("Direction", spriteDirection);
         anim.SetBool("Attacking", attacking);
     }
 

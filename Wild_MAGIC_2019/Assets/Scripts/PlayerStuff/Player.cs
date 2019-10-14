@@ -11,6 +11,22 @@ public class Player : MonoBehaviour
     public float attackDamage = 1f;
     public float attackTime = 0.05f;
     public float swordLength = 2;
+    public bool dashing = false;
+    public float lightRadius = 2;
+    public Transform lightMask;
+    public float flickerSpeed = 0.25f;
+    private float flicker;
+    public Rigidbody2D rb;
+    public bool invul = false;
+    public float invulTimer;
+    private float invulMax = .5f;
+    private float invulFlicker = .1f;
+    public Color color;
+    public float lightTimer;
+    private float lightMax = 15f;
+    public bool lightShrink;
+    public GameManager gameManager;
+    public RoomManager roomManager;
 
     [Space(15)]
     [Header("Player's Scripts")]
@@ -25,17 +41,35 @@ public class Player : MonoBehaviour
     public Sprite heart;
 
     private float swordTimer;
-    private Animator animator;
+
+    private AudioSource source;
+    public AudioClip[] audioClips;
 
     // Start is called before the first frame update
     void Start()
     {
         pMove.movementSpeed = movementSpeed;
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
+        lightShrink = true;
+        lightTimer = lightMax;
+
+        source = GetComponent<AudioSource>();
+
+        pMove.clip = audioClips[0];
+        pMove.source = source;
+    }
+
+    public void SetLightRadius(float amt)
+    {
+        lightRadius = amt;
+        lightMask.localScale = new Vector3(lightRadius, lightRadius, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        source = GetComponent<AudioSource>();
         if (swordTimer > 0)
             swordTimer -= Time.deltaTime;
         else
@@ -44,20 +78,103 @@ public class Player : MonoBehaviour
             pMove.attacking = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && swordTimer <= 0 && (!lightShrink || roomManager.currentRoom.firstClear))
         {
             Attack();
             pMove.attacking = true;
+            pMove.dashing = dashing;
         }
 
-        if(hp <= 0)
+        if (flicker <= 0)
         {
-            //Die();
+            float flickerScale = Random.Range(lightRadius, lightRadius + 0.2f);
+            lightMask.localScale = Vector3.Lerp(lightMask.localScale, new Vector3(flickerScale, flickerScale), 10f * Time.deltaTime);
+            flicker = flickerSpeed;
+        }
+        else
+        {
+            flicker -= Time.deltaTime;
+        }
+
+        if (invulTimer > invulFlicker * 5 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 4 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 3 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker * 2 && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invulTimer > invulFlicker && invulTimer > 0 && invul)
+        {
+            invulTimer -= Time.deltaTime;
+            color = GetComponentInChildren<SpriteRenderer>().color;
+            color.a = .5f;
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        else if (invul)
+        {
+            invul = false;
+            invulTimer = invulMax;
+            color = new Color(1, 1, 1);
+            GetComponentInChildren<SpriteRenderer>().color = color;
+        }
+        if (!roomManager.currentRoom.firstClear)
+        {
+            if (lightTimer > gameManager.currentLight && lightShrink)
+            {
+                lightTimer -= Time.deltaTime * 10;
+                if (lightTimer > gameManager.currentLight)
+                {
+                    SetLightRadius(lightTimer);
+                }
+                else
+                {
+                    SetLightRadius(gameManager.currentLight);
+                }
+                lightTimer -= Time.deltaTime;
+            }
+            else if (lightShrink)
+            {
+                lightShrink = false;
+                lightTimer = lightMax;
+            }
+        }
+        else
+        {
+            SetLightRadius(30);
         }
     }
 
-    void Attack()
+    public void Attack()
     {
+        if (!source.isPlaying)
+        {
+            source.clip = audioClips[1];
+            source.Play();
+        }
+        if(dashing)
+        {
+            pMove.Dash();
+        }
+
         if (createdSword != null)
             GameObject.Destroy(createdSword);
 
@@ -145,18 +262,36 @@ public class Player : MonoBehaviour
             RaycastHit2D[] cols = Physics2D.RaycastAll(transform.position, rot, swordLength);
             foreach (RaycastHit2D col in cols)
             {
-                if (col.transform.gameObject.tag == "Enemy")
+                if (col.transform.gameObject.tag == "Enemy" || col.transform.gameObject.tag == "Boss")
                 {
+                    source.clip = audioClips[3];
+                    source.Play();
                     if (col.transform.GetComponent<EnemyBase>() != null)
-                        col.transform.GetComponent<EnemyBase>().TakeDamage(1);
-                    i = arcSize / 2;
+                        col.transform.GetComponent<EnemyBase>().TakeDamage(attackDamage);
+                    if (col.transform.GetComponent<Boss>() != null)
+                        col.transform.GetComponent<Boss>().TakeDamage(attackDamage);
+
+                    pMove.dashTimer = -1;
+                    pMove.dashing = false;
+
+                    Instantiate(Resources.Load("HitEffect"), col.transform.position + new Vector3(0, 0, -2), Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x)));
+
+                    i = 60f;
                 }
             }
         }
     }
     public void TakeDamage(float amt)
     {
-        hp -= amt;
+        if (!invul)
+        {
+            source.clip = audioClips[2];
+            source.Play();
+            hp -= amt;
+            Camera.main.GetComponent<ScreenShake>().Shake();
+            invul = true;
+        }
+
     }
 
     public Vector3 GetPosition()
