@@ -165,8 +165,11 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        source.clip = audioClips[1];
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.clip = audioClips[1];
+            source.Play();
+        }
         if(dashing)
         {
             pMove.Dash();
