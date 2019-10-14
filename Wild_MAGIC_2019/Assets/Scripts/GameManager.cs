@@ -75,10 +75,6 @@ public class GameManager : MonoBehaviour
                 if (playerChosen == CardType.Sun)
                 {
                     currentLight = sunLight;
-                    for (int i = 0; i < enemyManager.enemies.Length; i++)
-                    {
-                        enemyManager.enemies[i].movementSpeed *= 5f;
-                    }
                 }
                 else if (playerChosen == CardType.Death)
                 {
@@ -91,6 +87,7 @@ public class GameManager : MonoBehaviour
                     currentLight = moonLight;
                     player.dashing = true;
                 }
+                first = false;
             }
         }
         else
@@ -130,7 +127,16 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        if(SceneManager.GetActiveScene().buildIndex == 32 || SceneManager.GetActiveScene().buildIndex == 5)
+        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            if (player.hp <= 0)
+            {
+                first = true;
+                SceneManager.LoadScene(7);
+            }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 5)
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             if (player.hp <= 0)
