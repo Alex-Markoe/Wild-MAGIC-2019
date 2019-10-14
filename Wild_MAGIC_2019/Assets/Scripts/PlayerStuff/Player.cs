@@ -275,7 +275,7 @@ public class Player : MonoBehaviour
                     pMove.dashTimer = -1;
                     pMove.dashing = false;
 
-                    Instantiate(Resources.Load("HitEffect"), col.transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x)));
+                    Instantiate(Resources.Load("HitEffect"), col.transform.position + new Vector3(0, 0, -2), Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x)));
 
                     i = 60f;
                 }
