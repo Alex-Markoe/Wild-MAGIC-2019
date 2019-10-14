@@ -267,10 +267,9 @@ public class Player : MonoBehaviour
                     source.clip = audioClips[3];
                     source.Play();
                     if (col.transform.GetComponent<EnemyBase>() != null)
-                        col.transform.GetComponent<EnemyBase>().TakeDamage(1);
-
+                        col.transform.GetComponent<EnemyBase>().TakeDamage(attackDamage);
                     if (col.transform.GetComponent<Boss>() != null)
-                        col.transform.GetComponent<Boss>().TakeDamage(1);
+                        col.transform.GetComponent<Boss>().TakeDamage(attackDamage);
 
                     pMove.dashTimer = -1;
                     pMove.dashing = false;
